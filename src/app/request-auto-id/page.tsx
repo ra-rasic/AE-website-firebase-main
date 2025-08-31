@@ -7,7 +7,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -18,7 +17,11 @@ const formSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
   email: z.string().email("Invalid email address"),
-  address: z.string().min(1, "Mailing address is required"),
+  streetAddress: z.string().min(1, "Street address is required"),
+  addressLine2: z.string().optional(),
+  city: z.string().min(1, "City is required"),
+  state: z.string().min(1, "State is required"),
+  zipCode: z.string().min(5, "A valid ZIP code is required"),
   deliveryMethod: z.enum(["email", "mail"], {
     required_error: "You need to select a delivery method.",
   }),
@@ -34,7 +37,11 @@ export default function RequestAutoIdPage() {
       policyNumber: "",
       policyholderName: "",
       email: "",
-      address: "",
+      streetAddress: "",
+      addressLine2: "",
+      city: "",
+      state: "",
+      zipCode: "",
       deliveryMethod: "email",
     },
   });
@@ -114,19 +121,73 @@ export default function RequestAutoIdPage() {
                         </FormItem>
                       )}
                     />
-                     <FormField
+                    <FormField
                       control={form.control}
-                      name="address"
+                      name="streetAddress"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Mailing Address *</FormLabel>
+                          <FormLabel>Street Address *</FormLabel>
                           <FormControl>
-                            <Textarea placeholder="Full mailing address for the policy" {...field} />
+                            <Input placeholder="e.g., 123 Main St" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={form.control}
+                      name="addressLine2"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Address Line 2 (Optional)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., Apt, Suite, Bldg" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <FormField
+                        control={form.control}
+                        name="city"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>City *</FormLabel>
+                            <FormControl>
+                                <Input placeholder="e.g., Naples" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                        <FormField
+                        control={form.control}
+                        name="state"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>State *</FormLabel>
+                            <FormControl>
+                                <Input placeholder="e.g., FL" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                        <FormField
+                        control={form.control}
+                        name="zipCode"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>ZIP Code *</FormLabel>
+                            <FormControl>
+                                <Input placeholder="e.g., 34102" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                    </div>
                      <FormField
                         control={form.control}
                         name="deliveryMethod"
