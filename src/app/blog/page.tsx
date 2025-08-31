@@ -4,6 +4,7 @@ import { BlogPostCard } from "@/components/blog-post-card";
 import { Phone } from "lucide-react";
 import { Metadata } from 'next';
 import { blogPosts } from "@/lib/blog-data";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export const metadata: Metadata = {
     title: "Florida Insurance Blog | A & E Insurance Group",
@@ -17,6 +18,7 @@ const recentPosts = blogPosts.filter(p => !p.featured);
 export default function BlogPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">A&E Insurance Blog</h1>

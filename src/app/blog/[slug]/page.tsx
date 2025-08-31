@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Cta } from '@/components/sections/cta';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -59,7 +60,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-    <article>
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Blog', href: '/blog' },
+        { label: post.title }
+      ]} />
+      <article>
         <header className="bg-primary text-white py-16">
             <div className="container mx-auto px-4 text-center">
                 <Badge variant="secondary" className="mb-4">{post.category}</Badge>

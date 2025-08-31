@@ -2,6 +2,7 @@ import { Shield, Users, Award, MapPin, Clock, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 export const metadata: Metadata = {
     title: "About A & E Insurance Group - Florida Insurance Agency",
@@ -33,6 +34,7 @@ const team = [
 export default function AboutPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About Us' }]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">About A & E Insurance Group</h1>

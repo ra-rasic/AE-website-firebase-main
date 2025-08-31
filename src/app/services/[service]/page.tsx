@@ -1,9 +1,9 @@
-
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor } from 'lucide-react';
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 const serviceData: { [key: string]: any } = {
     'homeowners': {
@@ -32,7 +32,8 @@ const serviceData: { [key: string]: any } = {
         'Hurricane mitigation features (wind-rated windows, etc.)',
         'Your personal claims history and credit score',
         'Selected coverage limits and deductible choices'
-      ]
+      ],
+      breadcrumb: "Homeowners Insurance"
     },
     'auto': {
       title: 'Auto Insurance Florida',
@@ -60,7 +61,8 @@ const serviceData: { [key: string]: any } = {
         'Your chosen coverage limits and deductibles',
         'Garage location and annual mileage',
         'Credit history and insurance score'
-      ]
+      ],
+      breadcrumb: "Auto Insurance"
     },
     'flood': {
       title: 'Flood Insurance Florida',
@@ -88,7 +90,8 @@ const serviceData: { [key: string]: any } = {
         'Previous flood claims history',
         'The community\'s participation in the NFIP',
         'Desired coverage limits and deductibles'
-      ]
+      ],
+      breadcrumb: "Flood Insurance"
     },
     'umbrella': {
       title: 'Umbrella Insurance Florida',
@@ -116,7 +119,8 @@ const serviceData: { [key: string]: any } = {
         'Your personal lifestyle and risk exposure (pools, boats, etc.)',
         'Your profession and public profile',
         'The amount of coverage you wish to purchase'
-      ]
+      ],
+      breadcrumb: "Umbrella Insurance"
     },
     'boat': {
         title: 'Boat & PWC Insurance Florida',
@@ -144,7 +148,8 @@ const serviceData: { [key: string]: any } = {
           'Where you navigate (inland, coastal, offshore)',
           'Storage location (marina, lift, trailer)',
           'Your boating experience and safety course certifications'
-        ]
+        ],
+        breadcrumb: "Boat & PWC Insurance"
     },
     'condo-insurance': {
         title: 'Condo Insurance Florida (HO-6)',
@@ -172,7 +177,8 @@ const serviceData: { [key: string]: any } = {
           'Your personal claims history',
           'Desired liability and loss assessment limits',
           'Deductible amounts for different perils'
-        ]
+        ],
+        breadcrumb: "Condo Insurance"
     },
     'bop': {
       title: 'Business Owners Insurance Florida',
@@ -200,7 +206,8 @@ const serviceData: { [key: string]: any } = {
         'Business location and building construction',
         'Value of equipment and inventory',
         'Specific operational risks and claims history'
-      ]
+      ],
+      breadcrumb: "Business Owners Policy"
     },
     'general-liability': {
         title: 'General Liability Insurance Florida',
@@ -228,7 +235,8 @@ const serviceData: { [key: string]: any } = {
             'Number of employees and customer traffic',
             'Your products or services provided',
             'Desired coverage limits and aggregates'
-        ]
+        ],
+        breadcrumb: "General Liability"
     },
     'workers-comp': {
         title: 'Workers Compensation Insurance Florida',
@@ -256,7 +264,8 @@ const serviceData: { [key: string]: any } = {
             'Past claims history (Experience Mod)',
             'Company safety programs and record',
             'Coverage limits and any special endorsements'
-        ]
+        ],
+        breadcrumb: "Workers' Compensation"
     },
     'cyber-liability': {
         title: 'Cyber Liability Insurance Florida',
@@ -284,7 +293,8 @@ const serviceData: { [key: string]: any } = {
             'Your current IT security measures',
             'Industry and regulatory requirements (e.g., HIPAA)',
             'Desired coverage limits and sub-limits'
-        ]
+        ],
+        breadcrumb: "Cyber Liability"
     },
      'commercial-property': {
       title: 'Commercial Property Insurance Florida',
@@ -312,7 +322,8 @@ const serviceData: { [key: string]: any } = {
         'Value of business personal property (contents)',
         'Occupancy type and fire protection systems',
         'Desired coverage limits and deductibles'
-      ]
+      ],
+      breadcrumb: "Commercial Property"
     },
     'errors-omissions': {
         title: 'Professional Liability (E&O) Insurance Florida',
@@ -340,7 +351,8 @@ const serviceData: { [key: string]: any } = {
           'Contracts and client agreements in place',
           'Annual revenue and size of projects',
           'Past claims history'
-        ]
+        ],
+        breadcrumb: "Errors & Omissions"
       }
 };
 
@@ -354,11 +366,20 @@ export default function ServicePage({ params }: { params: { service: string } })
     requirements: ['Coverage tailored to your needs'],
     benefits: ['Professional service', 'Competitive rates', 'Expert guidance'],
     localInfo: 'We provide specialized insurance solutions for Florida residents.',
-    factors: ['Individual needs assessment', 'Coverage preferences', 'Budget considerations']
+    factors: ['Individual needs assessment', 'Coverage preferences', 'Budget considerations'],
+    breadcrumb: "Insurance Service"
   };
+
+  const isPersonal = ['homeowners', 'auto', 'flood', 'umbrella', 'boat', 'condo-insurance'].includes(params.service);
+  const parentPage = isPersonal ? {label: 'Personal Insurance', href: '/personal-insurance'} : {label: 'Business Insurance', href: '/business-insurance'};
 
   return (
     <>
+      <Breadcrumbs items={[
+          { label: 'Home', href: '/' },
+          parentPage,
+          { label: currentService.breadcrumb }
+      ]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">

@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
 import { Home, Car, Umbrella, Anchor, Sailboat, Shield } from "lucide-react";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 const personalServices = [
     { 
@@ -57,6 +58,7 @@ const additionalServices = [
 export default function PersonalInsurancePage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Personal Insurance' }]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Personal Insurance Solutions</h1>

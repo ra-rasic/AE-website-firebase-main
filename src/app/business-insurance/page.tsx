@@ -2,48 +2,49 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
 import { Building, Shield, Users, Laptop, Truck, FileText } from 'lucide-react';
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 const businessServices = [
     {
       title: "Business Owners Policy (BOP)",
       description: "Comprehensive package combining general liability and commercial property coverage.",
       icon: <Building className="w-8 h-8 text-primary" />,
-      link: "/services/business-owners-insurance",
+      link: "/services/bop",
       highlights: ["General Liability", "Property Coverage", "Business Interruption", "Crime Coverage"]
     },
     {
       title: "General Liability Insurance", 
       description: "Protection against third-party bodily injury and property damage claims.",
       icon: <Shield className="w-8 h-8 text-primary" />,
-      link: "/services/general-liability-insurance",
+      link: "/services/general-liability",
       highlights: ["Bodily Injury", "Property Damage", "Personal Injury", "Medical Payments"]
     },
     {
       title: "Workers' Compensation",
       description: "Required Florida coverage for employee injuries and occupational illnesses.",
       icon: <Users className="w-8 h-8 text-primary" />,
-      link: "/services/workers-compensation-insurance", 
+      link: "/services/workers-comp", 
       highlights: ["Medical Benefits", "Wage Replacement", "Disability Benefits", "Legal Compliance"]
     },
     {
       title: "Cyber Liability Insurance",
       description: "Modern protection against data breaches, cyber attacks, and digital threats.",
       icon: <Laptop className="w-8 h-8 text-primary" />,
-      link: "/services/cyber-liability-insurance",
+      link: "/services/cyber-liability",
       highlights: ["Data Breach Response", "Cyber Extortion", "Business Interruption", "Legal Defense"]
     },
     {
       title: "Commercial Auto Insurance",
       description: "Fleet and vehicle coverage for Florida business transportation needs.",
       icon: <Truck className="w-8 h-8 text-primary" />,
-      link: "/services/commercial-auto-insurance",
+      link: "/services/commercial-auto",
       highlights: ["Fleet Coverage", "Hired/Non-owned", "Commercial Liability", "Physical Damage"]
     },
     {
       title: "Professional Liability",
       description: "Errors & omissions coverage for professional service providers.",
       icon: <FileText className="w-8 h-8 text-primary" />,
-      link: "/services/errors-omissions-insurance",
+      link: "/services/errors-omissions",
       highlights: ["E&O Coverage", "Legal Defense", "Professional Negligence", "Client Relations"]
     }
   ];
@@ -63,6 +64,7 @@ const industries = [
 export default function BusinessInsurancePage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Business Insurance' }]} />
       <section className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Business Insurance Solutions</h1>

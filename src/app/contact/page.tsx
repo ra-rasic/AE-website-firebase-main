@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export const metadata: Metadata = {
     title: "Contact A & E Insurance Group - Florida Insurance Agency",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Contact Our Florida Insurance Experts</h1>
