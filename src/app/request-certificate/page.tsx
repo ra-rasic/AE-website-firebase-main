@@ -13,16 +13,30 @@ import { useToast } from "@/hooks/use-toast";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, Award } from "lucide-react";
 import { requestCertificate } from "@/lib/actions";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
+  policyType: z.enum(["personal", "commercial"], {
+    required_error: "You need to select a policy type.",
+  }),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
+  businessName: z.string().optional(),
   policyholderEmail: z.string().email("Invalid email address for policyholder"),
   requesterEmail: z.string().email("Invalid email address for requester").optional().or(z.literal('')),
   certificateHolderName: z.string().min(1, "Certificate holder name is required"),
   certificateHolderAddress: z.string().min(1, "Certificate holder address is required"),
   additionalInfo: z.string().optional(),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
+
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -33,6 +47,7 @@ export default function RequestCertificatePage() {
     defaultValues: {
       policyNumber: "",
       policyholderName: "",
+      businessName: "",
       policyholderEmail: "",
       requesterEmail: "",
       certificateHolderName: "",
@@ -40,6 +55,8 @@ export default function RequestCertificatePage() {
       additionalInfo: "",
     },
   });
+  
+  const policyType = form.watch("policyType");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const result = await requestCertificate(data);
@@ -85,32 +102,75 @@ export default function RequestCertificatePage() {
              <CardContent>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="policyNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Your Policy Number *</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your business or personal policy number" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                          control={form.control}
+                          name="policyType"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>Policy Type *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder="Select a policy type" />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="personal">Personal</SelectItem>
+                                  <SelectItem value="commercial">Commercial</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="policyNumber"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Your Policy Number *</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your policy number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                      <FormField
                       control={form.control}
                       name="policyholderName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Your Full Name or Business Name *</FormLabel>
+                          <FormLabel>
+                            {policyType === 'commercial' ? 'Contact Full Name *' : 'Policyholder Full Name *'}
+                          </FormLabel>
                           <FormControl>
-                            <Input placeholder="Name as it appears on your policy" {...field} />
+                            <Input 
+                              placeholder={policyType === 'commercial' ? "Full name of the person making the request" : "Full name as it appears on your policy"} 
+                              {...field} 
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+                    {policyType === 'commercial' && (
+                      <FormField
+                        control={form.control}
+                        name="businessName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name of Business *</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Name of business as listed on the policy" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
                      <FormField
                       control={form.control}
                       name="policyholderEmail"

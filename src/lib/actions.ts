@@ -105,17 +105,25 @@ export async function generateSeo(prevState: any, formData: FormData) {
 
 // Auto ID Card Request Action
 const autoIdSchema = z.object({
+  policyType: z.enum(["personal", "commercial"]),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
+  businessName: z.string().optional(),
   email: z.string().email("Invalid email address"),
   streetAddress: z.string().min(1, "Street address is required"),
   addressLine2: z.string().optional(),
   city: z.string().min(1, "City is required"),
   state: z.string().min(1, "State is required"),
   zipCode: z.string().min(5, "A valid ZIP code is required"),
-  deliveryMethod: z.enum(["email", "mail"], {
-    required_error: "You need to select a delivery method.",
-  }),
+  deliveryMethod: z.enum(["email", "mail"]),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
 
 export async function requestAutoId(data: unknown) {
@@ -124,13 +132,15 @@ export async function requestAutoId(data: unknown) {
     return { success: false, error: "Invalid form data.", errors: validatedFields.error.flatten().fieldErrors };
   }
 
-  const { policyNumber, policyholderName, email, streetAddress, addressLine2, city, state, zipCode, deliveryMethod } = validatedFields.data;
+  const { policyType, policyNumber, policyholderName, businessName, email, streetAddress, addressLine2, city, state, zipCode, deliveryMethod } = validatedFields.data;
   
   const subject = `New Auto ID Card Request - Policy ${policyNumber}`;
   const html = `
     <h1>New Auto ID Card Request</h1>
+    <p><strong>Policy Type:</strong> ${policyType}</p>
+    ${policyType === 'commercial' && businessName ? `<p><strong>Business Name:</strong> ${businessName}</p>` : ''}
     <p><strong>Policy Number:</strong> ${policyNumber}</p>
-    <p><strong>Policyholder Name:</strong> ${policyholderName}</p>
+    <p><strong>${policyType === 'commercial' ? 'Contact Name' : 'Policyholder Name'}:</strong> ${policyholderName}</p>
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Address:</strong><br/>
       ${streetAddress}<br/>
@@ -151,14 +161,25 @@ export async function requestAutoId(data: unknown) {
 
 // Certificate Request Action
 const certificateSchema = z.object({
+  policyType: z.enum(["personal", "commercial"]),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
+  businessName: z.string().optional(),
   policyholderEmail: z.string().email("Invalid email address for policyholder"),
   requesterEmail: z.string().email("Invalid email address for requester").optional().or(z.literal('')),
   certificateHolderName: z.string().min(1, "Certificate holder name is required"),
   certificateHolderAddress: z.string().min(1, "Certificate holder address is required"),
   additionalInfo: z.string().optional(),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
+
 
 export async function requestCertificate(data: unknown) {
   const validatedFields = certificateSchema.safeParse(data);
@@ -166,13 +187,15 @@ export async function requestCertificate(data: unknown) {
     return { success: false, error: "Invalid form data.", errors: validatedFields.error.flatten().fieldErrors };
   }
   
-  const { policyNumber, policyholderName, policyholderEmail, requesterEmail, certificateHolderName, certificateHolderAddress, additionalInfo } = validatedFields.data;
+  const { policyType, policyNumber, policyholderName, businessName, policyholderEmail, requesterEmail, certificateHolderName, certificateHolderAddress, additionalInfo } = validatedFields.data;
 
   const subject = `New Certificate of Insurance Request - Policy ${policyNumber}`;
   const html = `
     <h1>New Certificate of Insurance Request</h1>
+    <p><strong>Policy Type:</strong> ${policyType}</p>
+    ${policyType === 'commercial' && businessName ? `<p><strong>Business Name:</strong> ${businessName}</p>` : ''}
     <p><strong>Policy Number:</strong> ${policyNumber}</p>
-    <p><strong>Policyholder Name:</strong> ${policyholderName}</p>
+    <p><strong>${policyType === 'commercial' ? 'Contact Name' : 'Policyholder Name'}:</strong> ${policyholderName}</p>
     <p><strong>Policyholder Email:</strong> ${policyholderEmail}</p>
     <p><strong>Requester Email:</strong> ${requesterEmail || 'N/A'}</p>
     <hr/>
@@ -226,7 +249,7 @@ export async function requestPolicyChange(data: unknown) {
       <p><strong>Policy Type:</strong> ${policyType}</p>
       ${policyType === 'commercial' && businessName ? `<p><strong>Business Name:</strong> ${businessName}</p>` : ''}
       <p><strong>Policy Number:</strong> ${policyNumber}</p>
-      <p><strong>Policyholder Name:</strong> ${policyholderName}</p>
+      <p><strong>${policyType === 'commercial' ? 'Contact Name' : 'Policyholder Name'}:</strong> ${policyholderName}</p>
       <p><strong>Contact Email:</strong> ${email}</p>
       <p><strong>Contact Phone:</strong> ${phone}</p>
       <p><strong>Requested Effective Date:</strong> ${effectiveDate.toLocaleDateString()}</p>

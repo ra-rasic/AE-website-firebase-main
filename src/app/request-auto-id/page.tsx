@@ -13,10 +13,15 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, FileText } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { requestAutoId } from "@/lib/actions";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
+  policyType: z.enum(["personal", "commercial"], {
+    required_error: "You need to select a policy type.",
+  }),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
+  businessName: z.string().optional(),
   email: z.string().email("Invalid email address"),
   streetAddress: z.string().min(1, "Street address is required"),
   addressLine2: z.string().optional(),
@@ -26,7 +31,16 @@ const formSchema = z.object({
   deliveryMethod: z.enum(["email", "mail"], {
     required_error: "You need to select a delivery method.",
   }),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
+
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -37,6 +51,7 @@ export default function RequestAutoIdPage() {
     defaultValues: {
       policyNumber: "",
       policyholderName: "",
+      businessName: "",
       email: "",
       streetAddress: "",
       addressLine2: "",
@@ -46,6 +61,8 @@ export default function RequestAutoIdPage() {
       deliveryMethod: "email",
     },
   });
+
+  const policyType = form.watch("policyType");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const result = await requestAutoId(data);
@@ -91,32 +108,77 @@ export default function RequestAutoIdPage() {
              <CardContent>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="policyNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Policy Number *</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your auto policy number" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                          control={form.control}
+                          name="policyType"
+                          render={({ field }) => (
+                              <FormItem>
+                              <FormLabel>Policy Type *</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                  <SelectTrigger>
+                                      <SelectValue placeholder="Select a policy type" />
+                                  </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                  <SelectItem value="personal">Personal</SelectItem>
+                                  <SelectItem value="commercial">Commercial</SelectItem>
+                                  </SelectContent>
+                              </Select>
+                              <FormMessage />
+                              </FormItem>
+                          )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="policyNumber"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Policy Number *</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your auto policy number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                      <FormField
                       control={form.control}
                       name="policyholderName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Policyholder Full Name *</FormLabel>
+                          <FormLabel>
+                            {policyType === 'commercial' ? 'Contact Full Name *' : 'Policyholder Full Name *'}
+                          </FormLabel>
                           <FormControl>
-                            <Input placeholder="Full name as it appears on your policy" {...field} />
+                            <Input 
+                              placeholder={policyType === 'commercial' ? "Full name of the person making the request" : "Full name as it appears on your policy"} 
+                              {...field} 
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+
+                    {policyType === 'commercial' && (
+                      <FormField
+                        control={form.control}
+                        name="businessName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name of Business *</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Name of business as listed on the policy" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+
                     <FormField
                       control={form.control}
                       name="email"
