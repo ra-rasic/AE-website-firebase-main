@@ -32,7 +32,7 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Florida Story</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  In 2002, A & E Insurance Group was co-founded by Heather Andrea and Tracy Ewing with a clear vision: to offer Floridians better insurance choices. After years at a captive agency, they saw the need for an independent agency that could provide more flexibility, competitive rates, and truly personalized service to the Southwest Florida community.
+                  In 2002, A & E Insurance Group was co-founded by Heather Andrea and Tracy Ewing with a clear vision: to offer Floridians better insurance choices. After years representing a single, national insurance brand, they saw the need for an independent agency that could provide more flexibility, competitive rates, and truly personalized service to the Southwest Florida community.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Built on a cornerstone of trust and simplification, we've navigated everything from economic shifts to devastating hurricanes, evolving our mission to meet the challenges our neighbors face. Today, with over 30 years of personal experience, Heather continues to lead our agency with an unwavering passion for protecting our community.
