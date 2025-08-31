@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Home, Car, Ship, Building2, Umbrella, Briefcase, FirstAidKit,
+  Home, Car, Ship, Building2, Umbrella, Briefcase, HeartPulse,
   Truck, Wrench, Shield, Anchor, UserCheck, Construction, UserSquare,
   Building
 } from "lucide-react";
@@ -26,7 +26,7 @@ const businessServices = [
   { title: "Commercial Auto", icon: <Truck className="w-8 h-8"/> },
   { title: "Errors & Omissions", icon: <Wrench className="w-8 h-8"/> },
   { title: "Cyber Liability", icon: <Shield className="w-8 h-8"/> },
-  { title: "Workers’ Comp", icon: <FirstAidKit className="w-8 h-8"/> },
+  { title: "Workers’ Comp", icon: <HeartPulse className="w-8 h-8"/> },
   { title: "Builders Risk", icon: <Construction className="w-8 h-8"/> },
   { title: "Event Insurance", icon: <UserSquare className="w-8 h-8"/> },
 ];
