@@ -110,19 +110,30 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
           />
         </div>
 
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           <Button
             type="submit"
             className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
             size="lg"
           >
             <Send className="w-4 h-4 mr-2" />
-            <span>Get My Free Quote</span>
+            <span>Get Free Quote</span>
+          </Button>
+          <Button
+            asChild
+            className="w-full bg-green-600 hover:bg-green-700 text-white"
+            size="lg"
+            variant="secondary"
+          >
+            <a href="tel:239-591-1225">
+              <Phone className="w-4 h-4 mr-2" />
+              <span>Call Now</span>
+            </a>
           </Button>
         </div>
 
         <p className="text-xs text-muted-foreground text-center pt-2">
-          By submitting this form, you agree to be contacted by A & E Insurance Group.
+          By submitting this form, you agree to be contacted by AEGIS Insurance Group.
         </p>
       </form>
     </div>
