@@ -47,44 +47,47 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name *</Label>
+            <Label htmlFor="name" className="text-black">Full Name *</Label>
             <Input
               type="text"
               id="name"
               required
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="placeholder:text-black/70"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="email">Email Address *</Label>
+            <Label htmlFor="email" className="text-black">Email Address *</Label>
             <Input
               type="email"
               id="email"
               required
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="placeholder:text-black/70"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number *</Label>
+            <Label htmlFor="phone" className="text-black">Phone Number *</Label>
             <Input
               type="tel"
               id="phone"
               required
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              className="placeholder:text-black/70"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="service">Insurance Type</Label>
+            <Label htmlFor="service" className="text-black">Insurance Type</Label>
             <Select value={formData.service} onValueChange={(value) => setFormData({...formData, service: value})}>
-              <SelectTrigger id="service">
+              <SelectTrigger id="service" className="text-black">
                 <SelectValue placeholder="Select Insurance Type" />
               </SelectTrigger>
               <SelectContent>
@@ -100,13 +103,14 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message">Additional Details</Label>
+          <Label htmlFor="message" className="text-black">Additional Details</Label>
           <Textarea
             id="message"
             rows={4}
             value={formData.message}
             onChange={(e) => setFormData({...formData, message: e.target.value})}
             placeholder="Tell us about your insurance needs..."
+            className="placeholder:text-black/70"
           />
         </div>
 
