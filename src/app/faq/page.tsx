@@ -1,22 +1,9 @@
-
 "use client";
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-
-// Note: Metadata export is not effective in a client component, 
-// but we'll keep it here for structure. For optimal SEO, this page
-// could be refactored into a server component with a client child.
-/*
-export const metadata: Metadata = {
-  title: "Florida Insurance FAQ - A & E Insurance Group",
-  description: "Common questions about Florida insurance answered by expert agents. Auto, home, business, and flood insurance FAQ for Naples, Fort Myers and Southwest Florida residents.",
-  keywords: "Florida insurance FAQ, insurance questions Naples, Fort Myers insurance help, homeowners insurance questions, auto insurance FAQ Florida, flood insurance questions"
-};
-*/
 
 const faqData = [
     {
@@ -92,7 +79,7 @@ const faqData = [
       items: [
         {
           question: "How do I file a claim?",
-          answer: "Contact us immediately at (239) 591-1225 or email Contact@aeinsurancegroup.net. We'll guide you through the process, help document damages, and advocate for you with the insurance company. We provide 24/7 claims support for urgent situations."
+          answer: "Contact us immediately at (239) 591-1225 or email Contact@aeinsurancegroup.net. We'll guide you through the process, help document damages, and advocate for you with the insurance company."
         },
         {
           question: "What should I do after a hurricane or severe weather?",

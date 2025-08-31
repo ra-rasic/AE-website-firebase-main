@@ -49,7 +49,7 @@ const serviceData: { [key: string]: any } = {
         'Florida state-required PIP/PDL coverage',
         'Protection against uninsured/underinsured drivers',
         'Comprehensive & collision damage coverage',
-        '24/7 claims support and roadside assistance options',
+        'Claims support and roadside assistance options',
         'Multi-policy and safe driver discounts',
         'Flexible payment plans to fit your budget'
       ],

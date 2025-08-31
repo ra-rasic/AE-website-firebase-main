@@ -80,7 +80,6 @@ export default function ContactPage() {
                     <div className="text-gray-700">
                       <p>M-Thur: 9am - 3pm EST</p>
                       <p>Fri: 9am - 12pm EST</p>
-                      <p className="text-sm text-primary mt-2">Emergency claims support available 24/7</p>
                     </div>
                   </div>
                 </div>
