@@ -202,6 +202,14 @@ const policyChangeSchema = z.object({
     required_error: "An effective date is required.",
   }),
   changeDescription: z.string().min(10, "Please describe the change in at least 10 characters."),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
 
 export async function requestPolicyChange(data: unknown) {

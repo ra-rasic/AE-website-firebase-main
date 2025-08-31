@@ -29,6 +29,14 @@ const formSchema = z.object({
     required_error: "An effective date is required.",
   }),
   changeDescription: z.string().min(10, "Please describe the change in at least 10 characters."),
+}).refine(data => {
+    if (data.policyType === 'commercial') {
+        return !!data.businessName && data.businessName.length > 0;
+    }
+    return true;
+}, {
+    message: "Name of business is required for commercial policies.",
+    path: ["businessName"],
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -155,9 +163,9 @@ export default function RequestPolicyChangePage() {
                         name="businessName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Name of Business</FormLabel>
+                            <FormLabel>Name of Business *</FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter the name of the business" {...field} />
+                              <Input placeholder="Name of business as listed on the policy" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
