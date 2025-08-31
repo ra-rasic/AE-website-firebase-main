@@ -1,69 +1,106 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetClose, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X, Phone, Mail, Shield } from "lucide-react";
+import React, { useState } from "react";
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#about", label: "About Us" },
+  { href: "#why-choose-us", label: "About Us" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Contact" },
 ];
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.svg" alt="AEGIS Insurance Group Logo" width={120} height={32} />
-          </Link>
+    <header className="bg-card shadow-lg sticky top-0 z-50">
+      {/* Top Bar */}
+      <div className="bg-primary text-primary-foreground py-2">
+        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+          <div className="flex items-center space-x-4">
+            <a href="tel:239-591-1225" className="flex items-center hover:text-yellow-300 transition-colors">
+              <Phone className="w-4 h-4 mr-1" />
+              (239) 591-1225
+            </a>
+            <a href="mailto:Contact@aeinsurancegroup.net" className="flex items-center hover:text-yellow-300 transition-colors">
+              <Mail className="w-4 h-4 mr-1" />
+              Contact@aeinsurancegroup.net
+            </a>
+          </div>
+          <div className="hidden md:block">
+            <span>Serving Collier & Lee Counties | Licensed in Florida</span>
+          </div>
         </div>
-        <div className="md:hidden">
-           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.svg" alt="AEGIS Insurance Group Logo" width={120} height={32} />
+      </div>
+
+      {/* Main Navigation */}
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="flex items-center space-x-3">
+            <Shield className="w-10 h-10 text-primary" />
+            <div>
+              <h1 className="text-xl font-bold text-foreground">AEGIS Insurance Group</h1>
+              <p className="text-xs text-muted-foreground">Your Florida Insurance Experts</p>
+            </div>
           </Link>
-        </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-primary"
+                className="font-medium text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
             ))}
+             <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6">
+                <Link href="#quote">Get Free Quote</Link>
+            </Button>
           </nav>
-          <Button asChild className="hidden md:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground">
-            <Link href="#quote">Get a Quote</Link>
-          </Button>
-          <div className="md:hidden">
-            <Sheet>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
-                <div className="grid gap-4 py-6">
+              <SheetContent side="right" className="w-[300px]">
+                 <div className="flex justify-between items-center border-b pb-4 mb-4">
+                     <Link href="/" className="flex items-center space-x-2">
+                        <Shield className="w-8 h-8 text-primary" />
+                        <span className="font-bold text-lg">AEGIS Insurance</span>
+                     </Link>
+                    <SheetClose asChild>
+                         <Button variant="ghost" size="icon">
+                            <X className="h-6 w-6" />
+                         </Button>
+                    </SheetClose>
+                 </div>
+                <div className="flex flex-col space-y-4">
                   {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="flex w-full items-center py-2 text-lg font-semibold"
-                    >
-                      {link.label}
-                    </Link>
+                    <SheetClose asChild key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="font-medium text-lg text-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
                   ))}
-                  <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                    <Link href="#quote">Get a Quote</Link>
-                  </Button>
+                  <SheetClose asChild>
+                    <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground w-full mt-4">
+                        <Link href="#quote">Get Free Quote</Link>
+                    </Button>
+                  </SheetClose>
                 </div>
               </SheetContent>
             </Sheet>
