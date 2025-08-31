@@ -38,7 +38,7 @@ export default function AboutPage() {
                   Built on a cornerstone of trust and simplification, we've navigated everything from economic shifts to devastating hurricanes, evolving our mission to meet the challenges our neighbors face. Today, with over 30 years of personal experience, Heather continues to lead our agency with an unwavering passion for protecting our community.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  We are a pillar of reliability, proudly serving over 2,500 families and businesses across Collier and Lee Counties by providing insurance you can understand and depend on.
+                  We are a pillar of reliability, proudly serving families and businesses across Collier and Lee Counties by providing insurance you can understand and depend on.
                 </p>
               </div>
               
