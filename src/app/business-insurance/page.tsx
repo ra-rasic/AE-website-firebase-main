@@ -152,34 +152,34 @@ export default function BusinessInsurancePage() {
 
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-4xl font-bold mb-4">
-                  Protect Your Florida Business
+                  Get Personalized Coverage Today
                 </h2>
                 <p className="text-xl text-primary-foreground/90 mb-6">
-                  Don't let unexpected events threaten your business success. Our commercial 
-                  insurance experts will design a protection plan that fits your industry and budget.
+                  Our Florida insurance experts will analyze your needs and find the perfect 
+                  coverage at competitive rates. No obligation, just honest advice.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <Shield className="w-5 h-5 mr-3 text-accent" />
-                    <span>Industry-specific expertise</span>
+                    <span>Free consultation and quotes</span>
                   </div>
                   <div className="flex items-center">
                     <Shield className="w-5 h-5 mr-3 text-accent" />
-                    <span>Competitive commercial rates</span>
+                    <span>Same-day policy binding available</span>
                   </div>
                   <div className="flex items-center">
                     <Shield className="w-5 h-5 mr-3 text-accent" />
-                    <span>Dedicated claims advocacy</span>
+                    <span>Claims support during business hours</span>
                   </div>
                 </div>
               </div>
               <div>
                 <QuoteForm 
-                  title="Get Your Business Insurance Quote"
+                  title="Start Your Business Insurance Quote"
                   serviceType="business"
                   className="bg-card"
                 />
