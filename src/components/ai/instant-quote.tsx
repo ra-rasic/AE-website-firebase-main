@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Terminal, Send } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -68,6 +69,18 @@ export function InstantQuote() {
               <p className="whitespace-pre-wrap">{state.data.coverageDetails}</p>
             </AlertDescription>
           </Alert>
+           <div className="mt-4 pt-4 border-t">
+              <h4 className="font-medium mb-2">Have a question about your quote?</h4>
+              <div className="flex w-full items-center space-x-2">
+                <Input
+                  placeholder="Ask for adjustments or clarifications..."
+                  aria-label="Follow-up question"
+                />
+                <Button type="submit" size="icon" aria-label="Send follow-up">
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
         </div>
       )}
     </Card>
