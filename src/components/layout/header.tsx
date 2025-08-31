@@ -22,8 +22,8 @@ const navLinks = [
     href: "#", 
     label: "Service Center",
     subLinks: [
-      { href: "/contact", label: "Report a Claim" },
-      { href: "/contact", label: "Pay Bill" },
+      { href: "/report-a-claim", label: "Report a Claim" },
+      { href: "/pay-bill", label: "Pay Bill" },
       { href: "/contact", label: "Request Auto ID Card" },
       { href: "/contact", label: "Request a Certificate" },
       { href: "/contact", label: "Request Policy Change" },
@@ -66,7 +66,7 @@ function NavLinks() {
           )
         ))}
          <Button asChild className="cta-button text-white rounded-full px-6">
-            <Link href="#quote">Get Free Quote</Link>
+            <Link href="/#quote">Get Free Quote</Link>
         </Button>
       </nav>
     );
