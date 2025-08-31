@@ -1,0 +1,7 @@
+<svg width="150" height="40" viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M20 5 L5 12 L5 25 C5 31 11 35 20 38 C29 35 35 31 35 25 L35 12 L20 5 Z" fill="#3498DB" />
+    <text x="13" y="27" font-family="PT Sans, sans-serif" font-size="16" font-weight="bold" fill="white">A&E</text>
+  </g>
+  <text x="45" y="28" font-family="PT Sans, sans-serif" font-size="20" font-weight="bold" fill="#353C46">AEGIS</text>
+</svg>
