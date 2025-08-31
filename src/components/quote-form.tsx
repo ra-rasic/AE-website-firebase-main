@@ -137,7 +137,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
         </div>
 
         <p className="text-xs text-muted-foreground text-center pt-2">
-          By submitting this form, you agree to be contacted by AEGIS Insurance Group.
+          By submitting this form, you agree to be contacted by A & E Insurance Group.
         </p>
       </form>
     </div>

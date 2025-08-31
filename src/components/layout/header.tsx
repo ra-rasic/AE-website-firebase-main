@@ -43,7 +43,7 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-3">
             <Shield className="w-10 h-10 text-primary" />
             <div>
-              <h1 className="text-xl font-bold text-foreground">AEGIS Insurance Group</h1>
+              <h1 className="text-xl font-bold text-foreground">A & E Insurance Group</h1>
               <p className="text-xs text-muted-foreground">Your Florida Insurance Experts</p>
             </div>
           </Link>
@@ -77,7 +77,7 @@ export function Header() {
                  <div className="flex justify-between items-center border-b pb-4 mb-4">
                      <Link href="/" className="flex items-center space-x-2">
                         <Shield className="w-8 h-8 text-primary" />
-                        <span className="font-bold text-lg">AEGIS Insurance</span>
+                        <span className="font-bold text-lg">A & E Insurance</span>
                      </Link>
                     <SheetClose asChild>
                          <Button variant="ghost" size="icon">

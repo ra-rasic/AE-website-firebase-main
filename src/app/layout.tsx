@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'AEGIS Insurance Group | Florida Home, Auto & Business Insurance',
+  title: 'A & E Insurance Group | Florida Home, Auto & Business Insurance',
   description: 'Your trusted local Florida insurance agency for home, auto, and business coverage in Collier and Lee county. Get an instant AI-powered quote today.',
   keywords: 'Florida insurance, Collier County insurance, Lee County insurance, auto insurance, home insurance, business insurance, Bonita Springs insurance',
 };

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
 const companyDetails = {
-  name: "AEGIS Insurance Group",
+  name: "A & E Insurance Group",
   address: "28441 S Tamiami Trail, Suite 109, Bonita Springs, FL 34134",
   phone: "239-591-1225",
   email: "Contact@aeinsurancegroup.net",
@@ -50,7 +50,7 @@ export function Footer() {
                 <h1 className="text-xl font-bold">{companyDetails.name}</h1>
             </Link>
             <p className="text-sm text-gray-300 max-w-md">
-              AEGIS Insurance Group is your dedicated partner for personal and business insurance in Florida, providing tailored solutions with local expertise.
+              A & E Insurance Group is your dedicated partner for personal and business insurance in Florida, providing tailored solutions with local expertise.
             </p>
              <ul className="space-y-3 text-sm">
                  <li className="flex items-start">
@@ -112,7 +112,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} AEGIS Insurance Group. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} A & E Insurance Group. All rights reserved.</p>
            <p className="mt-2 text-xs">
             Website designed for superior SEO performance and local Florida search visibility.
           </p>
