@@ -118,6 +118,21 @@ export default function BusinessInsurancePage() {
         </div>
       </section>
 
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+            Additional Commercial Insurance Products
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {additionalServices.map((service, index) => (
+              <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:bg-blue-50 transition-colors">
+                <p className="font-medium text-gray-800">{service}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -129,21 +144,6 @@ export default function BusinessInsurancePage() {
             {industries.map((industry, index) => (
               <div key={index} className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow">
                 <p className="font-medium text-gray-800">{industry}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
-            Additional Commercial Insurance Products
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {additionalServices.map((service, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:bg-blue-50 transition-colors">
-                <p className="font-medium text-gray-800">{service}</p>
               </div>
             ))}
           </div>
