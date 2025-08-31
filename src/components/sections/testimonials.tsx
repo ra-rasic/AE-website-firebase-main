@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -46,10 +45,6 @@ export function Testimonials() {
                   </div>
                   <p className="text-muted-foreground italic flex-grow">"{testimonial.quote}"</p>
                   <div className="flex items-center space-x-3 pt-4 border-t w-full">
-                     <Avatar>
-                      <AvatarImage src={`https://i.pravatar.cc/40?u=${testimonial.avatar}`} />
-                      <AvatarFallback>{testimonial.avatar}</AvatarFallback>
-                    </Avatar>
                     <div>
                        <p className="font-semibold">{testimonial.name}</p>
                        <p className="text-xs text-muted-foreground">{testimonial.location}</p>
