@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -47,7 +48,7 @@ function NavLinks() {
               <div className="absolute top-full left-0 mt-2 w-56 bg-card rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-2">
                   {link.subLinks.map(subLink => (
-                    <Link key={subLink.href} href={subLink.href} className="block px-4 py-2 text-foreground hover:bg-secondary hover:text-primary">
+                    <Link key={`${subLink.href}-${subLink.label}`} href={subLink.href} className="block px-4 py-2 text-foreground hover:bg-secondary hover:text-primary">
                       {subLink.label}
                     </Link>
                   ))}
@@ -137,7 +138,7 @@ export function Header() {
                          <p className="font-medium text-lg text-foreground px-2 pt-2">{link.label}</p>
                          <div className="flex flex-col space-y-2 pl-4 pt-2">
                             {link.subLinks.map(subLink => (
-                               <SheetClose asChild key={subLink.href}>
+                               <SheetClose asChild key={`${subLink.href}-${subLink.label}`}>
                                 <Link
                                   href={subLink.href}
                                   className="font-medium text-base text-muted-foreground hover:text-primary transition-colors"
