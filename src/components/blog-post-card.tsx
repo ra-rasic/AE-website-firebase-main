@@ -3,21 +3,10 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Calendar, User, Clock } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-interface Post {
-    title: string;
-    excerpt: string;
-    imageUrl: string;
-    dataAiHint: string;
-    author: string;
-    date: string;
-    readingTime: string;
-    link: string;
-}
+import { BlogPost } from "@/lib/blog-data";
 
 interface BlogPostCardProps {
-  post: Post;
+  post: BlogPost;
   isFeatured?: boolean;
 }
 
@@ -45,7 +34,7 @@ export function BlogPostCard({ post, isFeatured = false }: BlogPostCardProps) {
               <div className="flex items-center"><Calendar className="w-4 h-4 mr-2" /> {post.date}</div>
               <div className="flex items-center"><Clock className="w-4 h-4 mr-2" /> {post.readingTime}</div>
             </div>
-            <Link href={post.link} className="font-semibold text-primary inline-flex items-center group">
+            <Link href={`/blog/${post.slug}`} className="font-semibold text-primary inline-flex items-center group">
               Read Full Article <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -56,7 +45,7 @@ export function BlogPostCard({ post, isFeatured = false }: BlogPostCardProps) {
 
   return (
     <Card className="flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full">
-      <Link href={post.link} className="block">
+      <Link href={`/blog/${post.slug}`} className="block">
         <div className="relative h-48 w-full">
             <Image
               src={post.imageUrl}
@@ -70,7 +59,7 @@ export function BlogPostCard({ post, isFeatured = false }: BlogPostCardProps) {
       </Link>
       <CardContent className="p-6 flex flex-col flex-grow">
         <h3 className="text-xl font-bold mb-3 text-foreground flex-grow">
-          <Link href={post.link} className="hover:text-primary transition-colors">{post.title}</Link>
+          <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</Link>
         </h3>
         <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{post.excerpt}</p>
         <div className="border-t pt-4 mt-auto">
