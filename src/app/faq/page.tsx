@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
@@ -170,11 +170,17 @@ const FAQ = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <Button asChild size="lg" className="cta-button text-white">
-                <Link href="/contact">Get Free Quote</Link>
+             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <a href="mailto:Contact@aeinsurancegroup.net">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Send Us An Email
+                </a>
             </Button>
              <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                <a href="tel:239-591-1225">Call (239) 591-1225</a>
+                <a href="tel:239-591-1225">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call (239) 591-1225
+                </a>
             </Button>
           </div>
         </div>
