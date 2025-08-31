@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 // Note: Metadata export is not effective in a client component, 
 // but we'll keep it here for structure. For optimal SEO, this page
@@ -106,6 +106,7 @@ const faqData = [
     }
   ];
 
+const FAQ = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (index: number) => {
