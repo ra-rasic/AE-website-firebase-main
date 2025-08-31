@@ -6,25 +6,25 @@ const services = [
   {
     title: "Auto Insurance",
     description: "Comprehensive coverage for Florida drivers with competitive rates and excellent customer service.",
-    link: "#contact",
+    link: "/services/auto",
     icon: <Car className="w-10 h-10 text-primary" />
   },
   {
     title: "Homeowners Insurance",
     description: "Protect your Florida home against hurricanes, floods, and other risks specific to our state.",
-    link: "#contact",
+    link: "/services/homeowners",
     icon: <Home className="w-10 h-10 text-primary" />
   },
   {
     title: "Business Insurance",
     description: "Complete commercial insurance solutions for Florida businesses of all sizes.",
-    link: "#contact",
+    link: "/business-insurance",
     icon: <Building className="w-10 h-10 text-primary" />
   },
   {
     title: "Flood Insurance",
     description: "Essential flood protection for Florida properties, required by many lenders.",
-    link: "#contact",
+    link: "/services/flood",
     icon: <Anchor className="w-10 h-10 text-primary" />
   }
 ];
