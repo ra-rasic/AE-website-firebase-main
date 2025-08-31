@@ -7,16 +7,21 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, FileText } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const formSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
   email: z.string().email("Invalid email address"),
-  vehicleInfo: z.string().min(1, "Vehicle information is required (Year, Make, Model, VIN)"),
+  address: z.string().min(1, "Mailing address is required"),
+  deliveryMethod: z.enum(["email", "mail"], {
+    required_error: "You need to select a delivery method.",
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -29,7 +34,8 @@ export default function RequestAutoIdPage() {
       policyNumber: "",
       policyholderName: "",
       email: "",
-      vehicleInfo: "",
+      address: "",
+      deliveryMethod: "email",
     },
   });
 
@@ -102,7 +108,7 @@ export default function RequestAutoIdPage() {
                         <FormItem>
                           <FormLabel>Email Address *</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Where should we send the ID card?" {...field} />
+                            <Input type="email" placeholder="Your contact email address" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -110,17 +116,47 @@ export default function RequestAutoIdPage() {
                     />
                      <FormField
                       control={form.control}
-                      name="vehicleInfo"
+                      name="address"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Vehicle Information *</FormLabel>
+                          <FormLabel>Mailing Address *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Year, Make, Model, and VIN of the vehicle" {...field} />
+                            <Textarea placeholder="Full mailing address for the policy" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+                     <FormField
+                        control={form.control}
+                        name="deliveryMethod"
+                        render={({ field }) => (
+                            <FormItem className="space-y-3">
+                            <FormLabel>How would you like to receive your ID cards? *</FormLabel>
+                            <FormControl>
+                                <RadioGroup
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                                className="flex flex-col space-y-1"
+                                >
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl>
+                                    <RadioGroupItem value="email" />
+                                    </FormControl>
+                                    <FormLabel className="font-normal">Email</FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                    <FormControl>
+                                    <RadioGroupItem value="mail" />
+                                    </FormControl>
+                                    <FormLabel className="font-normal">Mail</FormLabel>
+                                </FormItem>
+                                </RadioGroup>
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
                     <Button type="submit" size="lg" className="w-full">
                        <Send className="mr-2 h-4 w-4" /> Submit Request
                     </Button>
