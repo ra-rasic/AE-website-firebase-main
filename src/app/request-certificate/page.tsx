@@ -17,7 +17,8 @@ import { requestCertificate } from "@/lib/actions";
 const formSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
-  email: z.string().email("Invalid email address"),
+  policyholderEmail: z.string().email("Invalid email address for policyholder"),
+  requesterEmail: z.string().email("Invalid email address for requester").optional().or(z.literal('')),
   certificateHolderName: z.string().min(1, "Certificate holder name is required"),
   certificateHolderAddress: z.string().min(1, "Certificate holder address is required"),
   additionalInfo: z.string().optional(),
@@ -32,7 +33,8 @@ export default function RequestCertificatePage() {
     defaultValues: {
       policyNumber: "",
       policyholderName: "",
-      email: "",
+      policyholderEmail: "",
+      requesterEmail: "",
       certificateHolderName: "",
       certificateHolderAddress: "",
       additionalInfo: "",
@@ -111,12 +113,25 @@ export default function RequestCertificatePage() {
                     />
                      <FormField
                       control={form.control}
-                      name="email"
+                      name="policyholderEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Your Email Address *</FormLabel>
+                          <FormLabel>Policyholder's Email Address *</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Your contact email" {...field} />
+                            <Input type="email" placeholder="Policyholder's primary contact email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <FormField
+                      control={form.control}
+                      name="requesterEmail"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Requester's Email Address (Optional)</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="Email for the person requesting the certificate" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

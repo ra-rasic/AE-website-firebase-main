@@ -153,7 +153,8 @@ export async function requestAutoId(data: unknown) {
 const certificateSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
-  email: z.string().email("Invalid email address"),
+  policyholderEmail: z.string().email("Invalid email address for policyholder"),
+  requesterEmail: z.string().email("Invalid email address for requester").optional().or(z.literal('')),
   certificateHolderName: z.string().min(1, "Certificate holder name is required"),
   certificateHolderAddress: z.string().min(1, "Certificate holder address is required"),
   additionalInfo: z.string().optional(),
@@ -165,14 +166,15 @@ export async function requestCertificate(data: unknown) {
     return { success: false, error: "Invalid form data.", errors: validatedFields.error.flatten().fieldErrors };
   }
   
-  const { policyNumber, policyholderName, email, certificateHolderName, certificateHolderAddress, additionalInfo } = validatedFields.data;
+  const { policyNumber, policyholderName, policyholderEmail, requesterEmail, certificateHolderName, certificateHolderAddress, additionalInfo } = validatedFields.data;
 
   const subject = `New Certificate of Insurance Request - Policy ${policyNumber}`;
   const html = `
     <h1>New Certificate of Insurance Request</h1>
     <p><strong>Policy Number:</strong> ${policyNumber}</p>
     <p><strong>Policyholder Name:</strong> ${policyholderName}</p>
-    <p><strong>Requester Email:</strong> ${email}</p>
+    <p><strong>Policyholder Email:</strong> ${policyholderEmail}</p>
+    <p><strong>Requester Email:</strong> ${requesterEmail || 'N/A'}</p>
     <hr/>
     <h2>Certificate Holder Details</h2>
     <p><strong>Name:</strong> ${certificateHolderName}</p>
