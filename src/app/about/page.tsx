@@ -89,32 +89,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Florida Insurance Experts</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our team of licensed insurance professionals combines decades of experience with 
-              deep knowledge of Florida's unique insurance landscape.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-8 text-center">
-                <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Users className="w-12 h-12 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-primary font-medium mb-2">{member.title}</p>
-                <p className="text-sm text-muted-foreground mb-3">{member.experience}</p>
-                <p className="text-muted-foreground leading-relaxed">{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
