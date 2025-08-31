@@ -131,7 +131,7 @@ export default function RequestCertificatePage() {
                         <FormItem>
                           <FormLabel>Requester's Email Address (Optional)</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Email for the person requesting the certificate" {...field} />
+                            <Input type="email" placeholder="Email a copy to the person requesting the certificate" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
