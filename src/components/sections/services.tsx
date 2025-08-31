@@ -1,77 +1,65 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Home, Car, Ship, Building2, Umbrella, Briefcase, HeartPulse,
-  Truck, Wrench, Shield, Anchor, UserCheck, Construction, UserSquare,
-  Building
-} from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ArrowRight, Car, Home, Building, Anchor } from "lucide-react";
+import Link from "next/link";
 
-const personalServices = [
-  { title: "Homeowners", icon: <Home className="w-8 h-8"/> },
-  { title: "Condo", icon: <Building className="w-8 h-8"/> },
-  { title: "Auto", icon: <Car className="w-8 h-8"/> },
-  { title: "Boat/PWC", icon: <Ship className="w-8 h-8"/> },
-  { title: "Flood", icon: <Anchor className="w-8 h-8"/> },
-  { title: "Umbrella", icon: <Umbrella className="w-8 h-8"/> },
-  { title: "Renters", icon: <UserCheck className="w-8 h-8"/> },
-  { title: "Classic Car", icon: <Car className="w-8 h-8"/> },
-  { title: "Motorcycle", icon: <Car className="w-8 h-8"/> },
-  { title: "RV", icon: <Truck className="w-8 h-8"/> },
-  { title: "Yacht", icon: <Ship className="w-8 h-8"/> },
+const services = [
+  {
+    title: "Auto Insurance",
+    description: "Comprehensive coverage for Florida drivers with competitive rates and excellent customer service.",
+    link: "#contact",
+    icon: <Car className="w-10 h-10 text-primary" />
+  },
+  {
+    title: "Homeowners Insurance",
+    description: "Protect your Florida home against hurricanes, floods, and other risks specific to our state.",
+    link: "#contact",
+    icon: <Home className="w-10 h-10 text-primary" />
+  },
+  {
+    title: "Business Insurance",
+    description: "Complete commercial insurance solutions for Florida businesses of all sizes.",
+    link: "#contact",
+    icon: <Building className="w-10 h-10 text-primary" />
+  },
+  {
+    title: "Flood Insurance",
+    description: "Essential flood protection for Florida properties, required by many lenders.",
+    link: "#contact",
+    icon: <Anchor className="w-10 h-10 text-primary" />
+  }
 ];
 
-const businessServices = [
-  { title: "Business Owners", icon: <Briefcase className="w-8 h-8"/> },
-  { title: "General Liability", icon: <Shield className="w-8 h-8"/> },
-  { title: "Commercial Property", icon: <Building2 className="w-8 h-8"/> },
-  { title: "Commercial Auto", icon: <Truck className="w-8 h-8"/> },
-  { title: "Errors & Omissions", icon: <Wrench className="w-8 h-8"/> },
-  { title: "Cyber Liability", icon: <Shield className="w-8 h-8"/> },
-  { title: "Workers’ Comp", icon: <HeartPulse className="w-8 h-8"/> },
-  { title: "Builders Risk", icon: <Construction className="w-8 h-8"/> },
-  { title: "Event Insurance", icon: <UserSquare className="w-8 h-8"/> },
-];
 
 export function Services() {
   return (
     <section id="services" className="py-16 md:py-24 bg-card">
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-3 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Comprehensive Insurance Services</h2>
-          <p className="max-w-2xl mx-auto text-muted-foreground md:text-lg">
-            We offer a wide range of personal and business insurance products to protect what matters most to you in Florida.
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Insurance Solutions for Florida Families & Businesses</h2>
+          <p className="max-w-3xl mx-auto text-muted-foreground md:text-lg">
+            We understand Florida's unique insurance challenges. From hurricane protection to flood coverage, we provide comprehensive solutions tailored to Southwest Florida residents.
           </p>
         </div>
 
-        <div>
-          <h3 className="text-2xl font-semibold tracking-tight mb-6 font-headline">Personal Insurance</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {personalServices.map((service) => (
-              <Card key={service.title} className="text-center hover:shadow-lg transition-shadow duration-300 group">
-                <CardHeader className="flex flex-col items-center justify-center p-4">
-                  <div className="mb-4 bg-primary/10 text-primary rounded-full p-3 w-fit transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+             <Link key={index} href={service.link} className="group">
+              <Card className="text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                <CardHeader className="items-center">
+                  <div className="p-3 w-fit transition-colors">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-sm font-semibold">{service.title}</CardTitle>
+                  <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">{service.title}</CardTitle>
                 </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16">
-          <h3 className="text-2xl font-semibold tracking-tight mb-6 font-headline">Business Insurance</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {businessServices.map((service) => (
-              <Card key={service.title} className="text-center hover:shadow-lg transition-shadow duration-300 group">
-                 <CardHeader className="flex flex-col items-center justify-center p-4">
-                  <div className="mb-4 bg-primary/10 text-primary rounded-full p-3 w-fit transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    {service.icon}
+                <CardContent className="flex-grow flex flex-col justify-between">
+                  <p className="text-muted-foreground mb-4">{service.description}</p>
+                   <div className="flex items-center justify-center text-primary font-medium group-hover:text-accent transition-colors">
+                    Learn More <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  <CardTitle className="text-sm font-semibold">{service.title}</CardTitle>
-                </CardHeader>
+                </CardContent>
               </Card>
-            ))}
-          </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

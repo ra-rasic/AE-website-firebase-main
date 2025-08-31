@@ -1,41 +1,31 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Autoplay from "embla-carousel-autoplay";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "A & E Insurance Group found me the perfect homeowners policy for our new place in Naples. The process was so easy, and they saved us money!",
-    name: "Sarah L.",
+    quote: "A & E Insurance Group saved me over $800 on my home and auto insurance while providing better coverage. Their Florida expertise is unmatched!",
+    name: "Maria Rodriguez",
     location: "Naples, FL",
-    avatar: "SL",
+    avatar: "MR",
+    rating: 5,
   },
   {
-    quote: "As a small business owner in Fort Myers, getting the right commercial insurance was daunting. The team at A & E made it simple and affordable. Highly recommend!",
-    name: "Michael B.",
+    quote: "When Hurricane Ian hit, they handled my claim professionally and quickly. I can't recommend them enough for Florida homeowners.",
+    name: "John Thompson",
     location: "Fort Myers, FL",
-    avatar: "MB",
+    avatar: "JT",
+    rating: 5,
   },
   {
-    quote: "I bundled my auto and condo insurance and couldn't be happier. Fantastic service and great rates for Collier County residents.",
-    name: "Jessica P.",
-    location: "Marco Island, FL",
-    avatar: "JP",
-  },
-    {
-    quote: "Navigating flood insurance is a nightmare in Florida. A & E's expertise was invaluable. They explained everything clearly and got us covered.",
-    name: "David R.",
+    quote: "As a small business owner, their commercial insurance advice has been invaluable. They understand Florida business needs.",
+    name: "Sarah Chen",
     location: "Bonita Springs, FL",
-    avatar: "DR",
-  }
+    avatar: "SC",
+    rating: 5,
+  },
 ];
 
 export function Testimonials() {
@@ -43,49 +33,32 @@ export function Testimonials() {
     <section id="testimonials" className="py-16 md:py-24">
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-3 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Trusted by Floridians</h2>
-          <p className="max-w-2xl mx-auto text-muted-foreground md:text-lg">
-            See what our clients in Collier and Lee County are saying about us.
-          </p>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">What Our Florida Neighbors Say</h2>
         </div>
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 5000,
-            }),
-          ]}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full max-w-5xl mx-auto"
-        >
-          <CarouselContent>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-2 h-full">
-                  <Card className="h-full flex flex-col">
-                    <CardContent className="flex flex-col justify-between flex-grow p-6 space-y-4">
-                      <p className="text-muted-foreground italic flex-grow">"{testimonial.quote}"</p>
-                      <div className="flex items-center space-x-3 pt-4 border-t w-full">
-                         <Avatar>
-                          <AvatarImage src={`https://i.pravatar.cc/40?u=${testimonial.avatar}`} />
-                          <AvatarFallback>{testimonial.avatar}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                           <p className="font-semibold">{testimonial.name}</p>
-                           <p className="text-xs text-muted-foreground">{testimonial.location}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
+              <Card key={index} className="h-full flex flex-col shadow-md">
+                <CardContent className="flex flex-col justify-between flex-grow p-6 space-y-4">
+                   <div className="flex items-center mb-2">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic flex-grow">"{testimonial.quote}"</p>
+                  <div className="flex items-center space-x-3 pt-4 border-t w-full">
+                     <Avatar>
+                      <AvatarImage src={`https://i.pravatar.cc/40?u=${testimonial.avatar}`} />
+                      <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                       <p className="font-semibold">{testimonial.name}</p>
+                       <p className="text-xs text-muted-foreground">{testimonial.location}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
+          </div>
       </div>
     </section>
   );
