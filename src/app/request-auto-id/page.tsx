@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, FileText } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { requestAutoId } from "@/lib/actions";
 
 const formSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
@@ -40,19 +41,27 @@ export default function RequestAutoIdPage() {
       streetAddress: "",
       addressLine2: "",
       city: "",
-      state: "",
+      state: "FL",
       zipCode: "",
       deliveryMethod: "email",
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Auto ID Card Request:", data);
-    toast({
-      title: "Request Submitted!",
-      description: "Your auto ID card request has been received. We will process it shortly.",
-    });
-    form.reset();
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const result = await requestAutoId(data);
+    if (result.success) {
+        toast({
+            title: "Request Submitted!",
+            description: "Your auto ID card request has been received. We will process it shortly.",
+        });
+        form.reset();
+    } else {
+        toast({
+            title: "Submission Failed",
+            description: result.error || "An unknown error occurred. Please try again.",
+            variant: "destructive",
+        });
+    }
   };
 
   return (
@@ -218,8 +227,8 @@ export default function RequestAutoIdPage() {
                             </FormItem>
                         )}
                         />
-                    <Button type="submit" size="lg" className="w-full">
-                       <Send className="mr-2 h-4 w-4" /> Submit Request
+                    <Button type="submit" size="lg" className="w-full" disabled={form.formState.isSubmitting}>
+                       <Send className="mr-2 h-4 w-4" /> {form.formState.isSubmitting ? "Submitting..." : "Submit Request"}
                     </Button>
                   </form>
                 </Form>

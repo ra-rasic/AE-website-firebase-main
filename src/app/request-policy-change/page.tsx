@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, FileEdit } from "lucide-react";
 import { DatePicker } from "@/components/ui/date-picker";
+import { requestPolicyChange } from "@/lib/actions";
 
 const formSchema = z.object({
   policyNumber: z.string().min(1, "Policy number is required"),
@@ -40,13 +41,21 @@ export default function RequestPolicyChangePage() {
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Policy Change Request:", data);
-    toast({
-      title: "Request Submitted!",
-      description: "Your policy change request has been received. An agent will contact you to confirm the details.",
-    });
-    form.reset();
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const result = await requestPolicyChange(data);
+    if (result.success) {
+        toast({
+            title: "Request Submitted!",
+            description: "Your policy change request has been received. An agent will contact you to confirm the details.",
+        });
+        form.reset();
+    } else {
+        toast({
+            title: "Submission Failed",
+            description: result.error || "An unknown error occurred. Please try again.",
+            variant: "destructive",
+        });
+    }
   };
 
   return (
@@ -154,8 +163,8 @@ export default function RequestPolicyChangePage() {
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" size="lg" className="w-full">
-                       <Send className="mr-2 h-4 w-4" /> Submit Request
+                    <Button type="submit" size="lg" className="w-full" disabled={form.formState.isSubmitting}>
+                       <Send className="mr-2 h-4 w-4" /> {form.formState.isSubmitting ? "Submitting..." : "Submit Request"}
                     </Button>
                   </form>
                 </Form>
