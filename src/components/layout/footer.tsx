@@ -14,26 +14,26 @@ const companyDetails = {
 };
 
 const personalInsuranceLinks = [
-    { href: "#services", label: "Auto Insurance" },
-    { href: "#services", label: "Homeowners Insurance" },
-    { href: "#services", label: "Flood Insurance" },
-    { href: "#services", label: "Boat/PWC Insurance" },
-    { href: "#services", label: "Umbrella Insurance" },
+    { href: "/services/auto", label: "Auto Insurance" },
+    { href: "/services/homeowners", label: "Homeowners Insurance" },
+    { href: "/services/flood", label: "Flood Insurance" },
+    { href: "/services/boat", label: "Boat/PWC Insurance" },
+    { href: "/services/umbrella", label: "Umbrella Insurance" },
 ];
 
 const businessInsuranceLinks = [
-    { href: "#services", label: "Business Owners Policy" },
-    { href: "#services", label: "General Liability" },
-    { href: "#services", label: "Commercial Property" },
-    { href: "#services", label: "Workers' Compensation" },
-    { href: "#services", label: "Cyber Liability" },
+    { href: "/services/bop", label: "Business Owners Policy" },
+    { href: "/services/general-liability", label: "General Liability" },
+    { href: "/services/commercial-property", label: "Commercial Property" },
+    { href: "/services/workers-comp", label: "Workers' Compensation" },
+    { href: "/services/cyber-liability", label: "Cyber Liability" },
 ];
 
 const quickLinks = [
-    { href: "#why-choose-us", label: "About Us" },
-    { href: "#contact", label: "Contact" },
-    { href: "/#faq", label: "Insurance Tips" },
-    { href: "/#faq", label: "FAQ" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
+    { href: "/blog", label: "Insurance Tips" },
+    { href: "/faq", label: "FAQ" },
 ];
 
 
@@ -75,7 +75,7 @@ export function Footer() {
                 {personalInsuranceLinks.map(link => (
                      <li key={link.href}><Link href={link.href} className="text-gray-300 hover:text-primary transition-colors">{link.label}</Link></li>
                 ))}
-                 <li><Link href="#services" className="text-primary hover:text-primary/90 transition-colors">View All Personal →</Link></li>
+                 <li><Link href="/personal-insurance" className="text-primary hover:text-primary/90 transition-colors">View All Personal →</Link></li>
             </ul>
           </div>
           
@@ -86,7 +86,7 @@ export function Footer() {
                 {businessInsuranceLinks.map(link => (
                      <li key={link.href}><Link href={link.href} className="text-gray-300 hover:text-primary transition-colors">{link.label}</Link></li>
                 ))}
-                <li><Link href="#services" className="text-primary hover:text-primary/90 transition-colors">View All Business →</Link></li>
+                <li><Link href="/business-insurance" className="text-primary hover:text-primary/90 transition-colors">View All Business →</Link></li>
             </ul>
           </div>
 
