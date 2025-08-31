@@ -22,6 +22,7 @@ const formSchema = z.object({
   }),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
+  businessName: z.string().optional(),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(1, "Phone number is required"),
   effectiveDate: z.date({
@@ -39,11 +40,14 @@ export default function RequestPolicyChangePage() {
     defaultValues: {
       policyNumber: "",
       policyholderName: "",
+      businessName: "",
       email: "",
       phone: "",
       changeDescription: "",
     },
   });
+
+  const policyType = form.watch("policyType");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const result = await requestPolicyChange(data);
@@ -139,6 +143,23 @@ export default function RequestPolicyChangePage() {
                         </FormItem>
                       )}
                     />
+
+                    {policyType === 'commercial' && (
+                      <FormField
+                        control={form.control}
+                        name="businessName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name of Business</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Enter the name of the business" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <FormField
                             control={form.control}
