@@ -14,8 +14,12 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Send, FileEdit } from "lucide-react";
 import { DatePicker } from "@/components/ui/date-picker";
 import { requestPolicyChange } from "@/lib/actions";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
+  policyType: z.enum(["personal", "commercial"], {
+    required_error: "You need to select a policy type.",
+  }),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
   email: z.string().email("Invalid email address"),
@@ -85,19 +89,43 @@ export default function RequestPolicyChangePage() {
              <CardContent>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="policyNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Policy Number *</FormLabel>
-                          <FormControl>
-                            <Input placeholder="The policy number you wish to change" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                            control={form.control}
+                            name="policyType"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormLabel>Policy Type *</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a policy type" />
+                                    </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                    <SelectItem value="personal">Personal</SelectItem>
+                                    <SelectItem value="commercial">Commercial</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                        control={form.control}
+                        name="policyNumber"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Policy Number *</FormLabel>
+                            <FormControl>
+                                <Input placeholder="The policy number you wish to change" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                    </div>
+
                      <FormField
                       control={form.control}
                       name="policyholderName"

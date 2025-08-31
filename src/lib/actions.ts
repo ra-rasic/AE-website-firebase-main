@@ -192,6 +192,7 @@ export async function requestCertificate(data: unknown) {
 
 // Policy Change Request Action
 const policyChangeSchema = z.object({
+  policyType: z.enum(["personal", "commercial"]),
   policyNumber: z.string().min(1, "Policy number is required"),
   policyholderName: z.string().min(1, "Policyholder name is required"),
   email: z.string().email("Invalid email address"),
@@ -208,11 +209,12 @@ export async function requestPolicyChange(data: unknown) {
       return { success: false, error: "Invalid form data.", errors: validatedFields.error.flatten().fieldErrors };
     }
 
-    const { policyNumber, policyholderName, email, phone, effectiveDate, changeDescription } = validatedFields.data;
+    const { policyType, policyNumber, policyholderName, email, phone, effectiveDate, changeDescription } = validatedFields.data;
 
     const subject = `New Policy Change Request - Policy ${policyNumber}`;
     const html = `
       <h1>New Policy Change Request</h1>
+      <p><strong>Policy Type:</strong> ${policyType}</p>
       <p><strong>Policy Number:</strong> ${policyNumber}</p>
       <p><strong>Policyholder Name:</strong> ${policyholderName}</p>
       <p><strong>Contact Email:</strong> ${email}</p>
