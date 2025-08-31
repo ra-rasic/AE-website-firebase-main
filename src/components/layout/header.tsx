@@ -17,6 +17,17 @@ const navLinks = [
       { href: "/business-insurance", label: "Business Insurance" }
     ] 
   },
+  { 
+    href: "#", 
+    label: "Service Center",
+    subLinks: [
+      { href: "/contact", label: "Report a Claim" },
+      { href: "/contact", label: "Pay Bill" },
+      { href: "/contact", label: "Request Auto ID Card" },
+      { href: "/contact", label: "Request a Certificate" },
+      { href: "/contact", label: "Request Policy Change" },
+    ] 
+  },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
