@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Phone } from "lucide-react";
@@ -13,9 +14,9 @@ export function Cta() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                        <Link href="/contact">Request Free Quote</Link>
+                        <Link href="/contact">Get a Free Quote</Link>
                     </Button>
-                    <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                    <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">
                         <a href="tel:239-591-1225">
                             <Phone className="w-5 h-5 mr-2" />
                             Call (239) 591-1225
