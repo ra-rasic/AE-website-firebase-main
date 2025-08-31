@@ -24,9 +24,9 @@ const navLinks = [
     subLinks: [
       { href: "/report-a-claim", label: "Report a Claim" },
       { href: "/pay-bill", label: "Pay Bill" },
-      { href: "/contact", label: "Request Auto ID Card" },
-      { href: "/contact", label: "Request a Certificate" },
-      { href: "/contact", label: "Request Policy Change" },
+      { href: "/request-auto-id", label: "Request Auto ID Card" },
+      { href: "/request-certificate", label: "Request a Certificate" },
+      { href: "/request-policy-change", label: "Request Policy Change" },
     ] 
   },
   { href: "/about", label: "About" },
