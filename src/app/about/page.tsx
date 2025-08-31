@@ -32,13 +32,13 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Florida Story</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  In 2002, A & E Insurance Group was founded with a clear vision: to offer Floridians better insurance choices. After years at a captive agency, our founder, Heather Andrea, saw the need for an independent agency that could provide more flexibility, competitive rates, and truly personalized service to the Southwest Florida community.
+                  In 2002, A & E Insurance Group was co-founded by Heather Andrea and Tracy Ewing with a clear vision: to offer Floridians better insurance choices. After years at a captive agency, they saw the need for an independent agency that could provide more flexibility, competitive rates, and truly personalized service to the Southwest Florida community.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Built on a cornerstone of trust and simplification, we've navigated everything from economic shifts to devastating hurricanes, evolving our mission to meet the challenges our neighbors face. With over 30 years of personal experience, Heather continues to lead our agency with an unwavering passion for protecting our community.
+                  Built on a cornerstone of trust and simplification, we've navigated everything from economic shifts to devastating hurricanes, evolving our mission to meet the challenges our neighbors face. Today, with over 30 years of personal experience, Heather continues to lead our agency with an unwavering passion for protecting our community.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Today, we are a pillar of reliability, proudly serving over 2,500 families and businesses across Collier and Lee Counties by providing insurance you can understand and depend on.
+                  We are a pillar of reliability, proudly serving over 2,500 families and businesses across Collier and Lee Counties by providing insurance you can understand and depend on.
                 </p>
               </div>
               
