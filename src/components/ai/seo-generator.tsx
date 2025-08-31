@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { generateSeo } from "@/lib/actions";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -21,7 +22,7 @@ function SubmitButton() {
 
 export function SeoGenerator() {
   const initialState = { errors: {}, data: null, error: null };
-  const [state, dispatch] = useFormState(generateSeo, initialState);
+  const [state, dispatch] = useActionState(generateSeo, initialState);
 
   return (
     <Card className="shadow-lg">

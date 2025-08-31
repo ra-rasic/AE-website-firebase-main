@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { getInstantQuote } from "@/lib/actions";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,7 +21,7 @@ function SubmitButton() {
 
 export function InstantQuote() {
   const initialState = { errors: {}, data: null, error: null };
-  const [state, dispatch] = useFormState(getInstantQuote, initialState);
+  const [state, dispatch] = useActionState(getInstantQuote, initialState);
 
   return (
     <Card className="shadow-lg">
