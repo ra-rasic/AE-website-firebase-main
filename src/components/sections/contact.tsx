@@ -6,8 +6,8 @@ const companyDetails = {
   phone: "239-591-1225",
   email: "Contact@aeinsurancegroup.net",
   hours: [
-    { day: "Mon-Thur", time: "9am - 3pm EST" },
-    { day: "Friday", time: "9am - 12pm EST" }
+    { day: "M-Thur", time: "9am - 3pm EST" },
+    { day: "Fri", time: "9am - 12pm EST" }
   ]
 };
 
