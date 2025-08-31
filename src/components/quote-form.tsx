@@ -54,7 +54,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
               required
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="placeholder:text-black/70"
+              className="placeholder:text-black/70 text-black"
             />
           </div>
           
@@ -66,7 +66,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
               required
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="placeholder:text-black/70"
+              className="placeholder:text-black/70 text-black"
             />
           </div>
         </div>
@@ -80,7 +80,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
               required
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
-              className="placeholder:text-black/70"
+              className="placeholder:text-black/70 text-black"
             />
           </div>
           
@@ -110,7 +110,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
             value={formData.message}
             onChange={(e) => setFormData({...formData, message: e.target.value})}
             placeholder="Tell us about your insurance needs..."
-            className="placeholder:text-black/70"
+            className="placeholder:text-black/70 text-black"
           />
         </div>
 
