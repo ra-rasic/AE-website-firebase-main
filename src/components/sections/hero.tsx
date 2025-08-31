@@ -26,14 +26,6 @@ export function Hero() {
             <p className="text-lg md:text-xl text-primary-foreground/90">
               Serving Collier and Lee Counties with comprehensive insurance solutions. Get personalized coverage that protects what matters most to you and your family.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="#quote">Get Free Quote Today</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
-                <a href="tel:239-591-1225">Call (239) 591-1225</a>
-              </Button>
-            </div>
              <div className="flex items-center space-x-6 text-primary-foreground/90">
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
