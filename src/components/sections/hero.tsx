@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
-import { InstantQuote } from "../ai/instant-quote";
+import { QuoteForm } from "../quote-form";
 
 export function Hero() {
   return (
@@ -50,7 +50,7 @@ export function Hero() {
               </div>
           </div>
            <div className="lg:pl-8" id="quote">
-              <InstantQuote />
+              <QuoteForm className="bg-white/95 backdrop-blur-sm" />
             </div>
         </div>
       </div>
