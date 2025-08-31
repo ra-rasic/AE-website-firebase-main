@@ -135,9 +135,14 @@ export default function RequestPolicyChangePage() {
                       name="policyholderName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Policyholder Full Name *</FormLabel>
+                          <FormLabel>
+                            {policyType === 'commercial' ? 'Contact Full Name *' : 'Policyholder Full Name *'}
+                          </FormLabel>
                           <FormControl>
-                            <Input placeholder="Full name as it appears on your policy" {...field} />
+                            <Input 
+                              placeholder={policyType === 'commercial' ? "Full name of the person making the request" : "Full name as it appears on your policy"} 
+                              {...field} 
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
