@@ -1,8 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { LifeBuoy, Phone, Shield } from "lucide-react";
-import Link from "next/link";
+import { LifeBuoy, Phone, Building, Home } from "lucide-react";
+import Image from "next/image";
 import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -12,27 +12,37 @@ export const metadata: Metadata = {
     keywords: "report a claim, file insurance claim, Florida insurance carriers, claims center"
 };
 
-
 const personalCarriers = [
-    { name: "Progressive", url: "https://www.progressive.com/claims/" },
-    { name: "Travelers", url: "https://www.travelers.com/claims" },
-    { name: "Nationwide", url: "https://www.nationwide.com/claims/" },
-    { name: "Safeco", url: "https://www.safeco.com/claims" },
-    { name: "Foremost", url: "https://www.foremost.com/claims/" },
-    { name: "Tower Hill", url: "https://www.thig.com/claims/" },
-    { name: "Universal Property & Casualty", url: "https://universalproperty.com/claims" },
-    { name: "American Integrity", url: "https://aiicfl.com/manage-policy/report-a-claim/" },
-    { name: "Citizens Property Insurance", url: "https://www.citizensfla.com/claims" },
-    { name: "Security First", url: "https://www.securityfirstflorida.com/claims" }
+    { name: "American Integrity", url: "#" },
+    { name: "Bristol West", url: "#" },
+    { name: "Citizens", url: "#" },
+    { name: "Foremost", url: "#" },
+    { name: "Heritage Property & Casualty", url: "#" },
+    { name: "Homeowners Choice", url: "#" },
+    { name: "Infinity Insurance", url: "#" },
+    { name: "Manatee Insurance", url: "#" },
+    { name: "Monarch National", url: "#" },
+    { name: "Progressive", url: "#" },
+    { name: "Safepoint Insurance", url: "#" },
+    { name: "Security First", url: "#" },
+    { name: "Slide Insurance", url: "#" },
+    { name: "Southern Oak", url: "#" },
+    { name: "Universal Property", url: "#" },
+    { name: "Wright National Flood", url: "#" },
 ];
 
 const commercialCarriers = [
-    { name: "CNA", url: "https://www.cna.com/web/guest/cna/claims-center/" },
-    { name: "The Hartford", url: "https://www.thehartford.com/claims" },
-    { name: "Liberty Mutual", url: "https://www.libertymutual.com/claims" },
-    { name: "AmTrust Financial", url: "https://amtrustfinancial.com/claims" },
-    { name: "Philadelphia Insurance", url: "https://www.phly.com/services/claims/default.aspx" },
-    { name: "USLI", url: "https://www.usli.com/claims/" }
+    { name: "Bass Underwriters", url: "#" },
+    { name: "BondExchange", url: "#" },
+    { name: "Braishfield Assc.", url: "#" },
+    { name: "Granda Insurance GIC", url: "#" },
+    { name: "Hartford Flood", url: "#" },
+    { name: "Heritage (Commerical)", url: "#" },
+    { name: "Hull & Co", url: "#" },
+    { name: "JIBNA", url: "#" },
+    { name: "Mac Neill Group", url: "#" },
+    { name: "RPS (First Rate)", url: "#" },
+    { name: "RT Specialty", url: "#" },
 ];
 
 export default function ReportClaimPage() {
@@ -46,8 +56,8 @@ export default function ReportClaimPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Report a Claim</h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
-            Report your claim directly to your insurance carrier for the fastest service. 
-            If you need assistance, our team is always here to help.
+            For the fastest service, report your claim directly to your insurance carrier using the links below. 
+            If you need assistance, our team is always here to help you through the process.
           </p>
         </div>
       </section>
@@ -58,7 +68,7 @@ export default function ReportClaimPage() {
             <div className="lg:col-span-2">
               <Card className="mb-12">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Personal Insurance Carriers</CardTitle>
+                  <CardTitle className="text-2xl flex items-center"><Home className="w-6 h-6 mr-3 text-primary" />Personal Insurance Carriers</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -70,7 +80,9 @@ export default function ReportClaimPage() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
                       >
-                        <span className="font-semibold text-secondary-foreground">{carrier.name}</span>
+                        <div className="flex items-center">
+                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
+                        </div>
                         <Button variant="ghost" size="sm">File Claim →</Button>
                       </a>
                     ))}
@@ -80,7 +92,7 @@ export default function ReportClaimPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Commercial Insurance Carriers</CardTitle>
+                  <CardTitle className="text-2xl flex items-center"><Building className="w-6 h-6 mr-3 text-primary" />Commercial & Specialty Carriers</CardTitle>
                 </CardHeader>
                 <CardContent>
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -92,7 +104,9 @@ export default function ReportClaimPage() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
                       >
-                        <span className="font-semibold text-secondary-foreground">{carrier.name}</span>
+                        <div className="flex items-center">
+                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
+                        </div>
                         <Button variant="ghost" size="sm">File Claim →</Button>
                       </a>
                     ))}
@@ -127,9 +141,9 @@ export default function ReportClaimPage() {
                   <ul className="space-y-3 text-muted-foreground list-disc pl-5">
                     <li>Your policy number</li>
                     <li>Date and time of the incident</li>
-                    <li>A description of what happened</li>
+                    <li>A detailed description of what happened</li>
                     <li>Photos or videos of the damage</li>
-                     <li>Police report number, if applicable</li>
+                     <li>A police report number, if applicable</li>
                   </ul>
                 </CardContent>
               </Card>

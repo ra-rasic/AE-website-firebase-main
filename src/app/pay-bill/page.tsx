@@ -1,8 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CreditCard, Phone } from "lucide-react";
-import Link from "next/link";
+import { CreditCard, Phone, Building, Home } from "lucide-react";
+import Image from "next/image";
 import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -13,25 +13,36 @@ export const metadata: Metadata = {
 };
 
 const personalCarriers = [
-    { name: "Progressive", url: "https://www.progressive.com/manage-policy/" },
-    { name: "Travelers", url: "https://www.travelers.com/pay-bill" },
-    { name: "Nationwide", url: "https://www.nationwide.com/personal/member-services/billing" },
-    { name: "Safeco", url: "https://www.safeco.com/customer-resources/customer-support/billing-and-payments" },
-    { name: "Foremost", url: "https://www.foremost.com/pay-bill/" },
-    { name: "Tower Hill", url: "https://my.thig.com/auth/login" },
-    { name: "Universal Property & Casualty", url: "https://universalproperty.com/amember/login/" },
-    { name: "American Integrity", url: "https://my.aiicfl.com/Account/Login" },
-    { name: "Citizens Property Insurance", url: "https://www.citizensfla.com/payment-options" },
-    { name: "Security First", url: "https://my.securityfirstflorida.com/m/login" }
+    { name: "American Integrity", url: "#" },
+    { name: "Bristol West", url: "#" },
+    { name: "Citizens", url: "#" },
+    { name: "Foremost", url: "#" },
+    { name: "Heritage Property & Casualty", url: "#" },
+    { name: "Homeowners Choice", url: "#" },
+    { name: "Infinity Insurance", url: "#" },
+    { name: "Manatee Insurance", url: "#" },
+    { name: "Monarch National", url: "#" },
+    { name: "Progressive", url: "#" },
+    { name: "Safepoint Insurance", url: "#" },
+    { name: "Security First", url: "#" },
+    { name: "Slide Insurance", url: "#" },
+    { name: "Southern Oak", url: "#" },
+    { name: "Universal Property", url: "#" },
+    { name: "Wright National Flood", url: "#" },
 ];
 
 const commercialCarriers = [
-    { name: "CNA", url: "https://www.cna.com/web/guest/cna/claims-center/billing-and-payment/" },
-    { name: "The Hartford", url: "https://www.thehartford.com/business-insurance-billing" },
-    { name: "Liberty Mutual", url: "https://www.libertymutual.com/business-insurance/billing-and-payment-options" },
-    { name: "AmTrust Financial", url: "https://amtrustfinancial.com/payments" },
-    { name: "Philadelphia Insurance", url: "https://www.phly.com/services/paymentoptions/" },
-    { name: "USLI", url: "https://www.usli.com/make-a-payment/" }
+    { name: "Bass Underwriters", url: "#" },
+    { name: "BondExchange", url: "#" },
+    { name: "Braishfield Assc.", url: "#" },
+    { name: "Granda Insurance GIC", url: "#" },
+    { name: "Hartford Flood", url: "#" },
+    { name: "Heritage (Commerical)", url: "#" },
+    { name: "Hull & Co", url: "#" },
+    { name: "JIBNA", url: "#" },
+    { name: "Mac Neill Group", url: "#" },
+    { name: "RPS (First Rate)", url: "#" },
+    { name: "RT Specialty", url: "#" },
 ];
 
 export default function PayBillPage() {
@@ -43,10 +54,10 @@ export default function PayBillPage() {
       ]} />
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">Pay Your Bill</h1>
+          <h1 className="text-5xl font-bold mb-4">Pay Your Insurance Bill</h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
             For your convenience, you can pay your insurance bill directly through your carrier's website. 
-            Select your carrier from the list below to get started.
+            Select your carrier from the list below to be directed to their secure payment portal.
           </p>
         </div>
       </section>
@@ -57,7 +68,7 @@ export default function PayBillPage() {
             <div className="lg:col-span-2">
               <Card className="mb-12">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Personal Insurance Carriers</CardTitle>
+                  <CardTitle className="text-2xl flex items-center"><Home className="w-6 h-6 mr-3 text-primary" />Personal Insurance Carriers</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -69,7 +80,9 @@ export default function PayBillPage() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
                       >
-                        <span className="font-semibold text-secondary-foreground">{carrier.name}</span>
+                         <div className="flex items-center">
+                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
+                        </div>
                         <Button variant="ghost" size="sm">Pay Bill →</Button>
                       </a>
                     ))}
@@ -79,7 +92,7 @@ export default function PayBillPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Commercial Insurance Carriers</CardTitle>
+                  <CardTitle className="text-2xl flex items-center"><Building className="w-6 h-6 mr-3 text-primary" />Commercial & Specialty Carriers</CardTitle>
                 </CardHeader>
                 <CardContent>
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -91,7 +104,9 @@ export default function PayBillPage() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
                       >
-                        <span className="font-semibold text-secondary-foreground">{carrier.name}</span>
+                        <div className="flex items-center">
+                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
+                        </div>
                         <Button variant="ghost" size="sm">Pay Bill →</Button>
                       </a>
                     ))}
@@ -120,16 +135,16 @@ export default function PayBillPage() {
               
                <Card>
                 <CardHeader>
-                  <CardTitle>Information Needed</CardTitle>
+                  <CardTitle>Information You May Need</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-muted-foreground list-disc pl-5">
                     <li>Your policy number</li>
-                    <li>Last name and zip code</li>
-                    <li>A valid payment method</li>
+                    <li>Last name and zip code on the policy</li>
+                    <li>A valid payment method (credit/debit card or bank account)</li>
                   </ul>
                    <p className="text-xs text-muted-foreground mt-4">
-                    Most carriers accept e-checks and major credit cards.
+                    Carrier portals are secure and your information is private.
                   </p>
                 </CardContent>
               </Card>

@@ -66,7 +66,7 @@ function NavLinks() {
           )
         ))}
          <Button asChild className="cta-button text-white rounded-full px-6">
-            <Link href="/#quote">Get Free Quote</Link>
+            <Link href="/contact">Get Free Quote</Link>
         </Button>
       </nav>
     );
@@ -162,7 +162,7 @@ export function Header() {
                   ))}
                   <SheetClose asChild>
                     <Button asChild className="cta-button text-white w-full mt-4">
-                        <Link href="/#quote">Get Free Quote</Link>
+                        <Link href="/contact">Get Free Quote</Link>
                     </Button>
                   </SheetClose>
                 </div>
