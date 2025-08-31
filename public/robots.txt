@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://aeinsurancefl.com/sitemap.xml
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /wp-admin/
+Disallow: /api/
+
+# Allow important pages for SEO
+Allow: /
+Allow: /about
+Allow: /contact  
+Allow: /personal-insurance
+Allow: /business-insurance
+Allow: /services/
+Allow: /blog
+Allow: /faq
+
+# Crawl delay for politeness
+Crawl-delay: 1
