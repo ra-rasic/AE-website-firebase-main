@@ -1,10 +1,11 @@
 
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { LifeBuoy, Phone, Building, Home } from "lucide-react";
+import { Phone, Building, Home, LifeBuoy } from "lucide-react";
 import Image from "next/image";
 import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { personalCarriers, commercialCarriers } from "@/lib/carrier-data";
+import { CarrierCard } from "@/components/carrier-card";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
     title: "Report a Claim | A & E Insurance Group",
@@ -12,38 +13,6 @@ export const metadata: Metadata = {
     keywords: "report a claim, file insurance claim, Florida insurance carriers, claims center"
 };
 
-const personalCarriers = [
-    { name: "American Integrity", url: "#" },
-    { name: "Bristol West", url: "#" },
-    { name: "Citizens", url: "#" },
-    { name: "Foremost", url: "#" },
-    { name: "Heritage Property & Casualty", url: "#" },
-    { name: "Homeowners Choice", url: "#" },
-    { name: "Infinity Insurance", url: "#" },
-    { name: "Manatee Insurance", url: "#" },
-    { name: "Monarch National", url: "#" },
-    { name: "Progressive", url: "#" },
-    { name: "Safepoint Insurance", url: "#" },
-    { name: "Security First", url: "#" },
-    { name: "Slide Insurance", url: "#" },
-    { name: "Southern Oak", url: "#" },
-    { name: "Universal Property", url: "#" },
-    { name: "Wright National Flood", url: "#" },
-];
-
-const commercialCarriers = [
-    { name: "Bass Underwriters", url: "#" },
-    { name: "BondExchange", url: "#" },
-    { name: "Braishfield Assc.", url: "#" },
-    { name: "Granda Insurance GIC", url: "#" },
-    { name: "Hartford Flood", url: "#" },
-    { name: "Heritage (Commerical)", url: "#" },
-    { name: "Hull & Co", url: "#" },
-    { name: "JIBNA", url: "#" },
-    { name: "Mac Neill Group", url: "#" },
-    { name: "RPS (First Rate)", url: "#" },
-    { name: "RT Specialty", url: "#" },
-];
 
 export default function ReportClaimPage() {
   return (
@@ -66,62 +35,27 @@ export default function ReportClaimPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <Card className="mb-12">
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center"><Home className="w-6 h-6 mr-3 text-primary" />Personal Insurance Carriers</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h2 className="text-2xl font-bold mb-6 flex items-center"><Home className="w-6 h-6 mr-3 text-primary" />Personal Insurance Carriers</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                     {personalCarriers.map(carrier => (
-                      <a 
-                        key={carrier.name} 
-                        href={carrier.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
-                      >
-                        <div className="flex items-center">
-                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
-                        </div>
-                        <Button variant="ghost" size="sm">File Claim →</Button>
-                      </a>
+                        <CarrierCard key={carrier.name} carrier={carrier} actionType="claim" />
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center"><Building className="w-6 h-6 mr-3 text-primary" />Commercial & Specialty Carriers</CardTitle>
-                </CardHeader>
-                <CardContent>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h2 className="text-2xl font-bold mb-6 flex items-center"><Building className="w-6 h-6 mr-3 text-primary" />Commercial & Specialty Carriers</h2>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {commercialCarriers.map(carrier => (
-                       <a 
-                        key={carrier.name} 
-                        href={carrier.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors"
-                      >
-                        <div className="flex items-center">
-                          <Image src={`https://placehold.co/100x40/FFFFFF/777777/png?text=${carrier.name.replace(/\s/g, '+')}`} width={100} height={40} alt={`${carrier.name} logo`} className="mr-4 object-contain h-10 w-24"/>
-                        </div>
-                        <Button variant="ghost" size="sm">File Claim →</Button>
-                      </a>
+                        <CarrierCard key={carrier.name} carrier={carrier} actionType="claim" />
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
             </div>
 
             <aside className="space-y-8">
-              <Card className="bg-blue-50 border-blue-200">
-                <CardHeader>
-                  <CardTitle className="flex items-center"><LifeBuoy className="w-6 h-6 mr-3 text-primary" />We're Here to Help</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">
+              <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg shadow-md">
+                <div className="text-center">
+                  <LifeBuoy className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">We're Here to Help</h3>
+                  <p className="text-muted-foreground text-sm mb-4">
                     Filing a claim can be stressful. If you're unsure about the process or need help communicating with your carrier, please don't hesitate to contact us.
                   </p>
                    <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white">
@@ -130,23 +64,19 @@ export default function ReportClaimPage() {
                             Call (239) 591-1225
                         </a>
                     </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-               <Card>
-                <CardHeader>
-                  <CardTitle>What You'll Need</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 text-muted-foreground list-disc pl-5">
-                    <li>Your policy number</li>
-                    <li>Date and time of the incident</li>
-                    <li>A detailed description of what happened</li>
-                    <li>Photos or videos of the damage</li>
-                     <li>A police report number, if applicable</li>
-                  </ul>
-                </CardContent>
-              </Card>
+               <div className="bg-card border p-6 rounded-lg shadow-md">
+                <h3 className="text-lg font-semibold text-foreground mb-3">What You'll Need</h3>
+                <ul className="space-y-3 text-muted-foreground list-disc pl-5 text-sm">
+                  <li>Your policy number</li>
+                  <li>Date and time of the incident</li>
+                  <li>A detailed description of what happened</li>
+                  <li>Photos or videos of the damage</li>
+                  <li>A police report number, if applicable</li>
+                </ul>
+              </div>
             </aside>
           </div>
         </div>
