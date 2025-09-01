@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'A & E Insurance Group - Florida Insurance Agency | Naples & Fort Myers',
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
   }
 };
 
+const GA_MEASUREMENT_ID = "G-464307999";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,6 +52,22 @@ export default function RootLayout({
         <link rel="canonical" href="https://aeinsurancefl.com/" />
       </head>
       <body className="font-body antialiased">
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `,
+          }}
+        />
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">{children}</main>
