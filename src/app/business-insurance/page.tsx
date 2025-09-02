@@ -63,6 +63,16 @@ const industries = [
     "Manufacturing", "Transportation", "Agriculture", "Marine"
 ];
 
+const quoteFormServices = [
+    { value: "bop", label: "Business Owners Policy (BOP)" },
+    { value: "general-liability", label: "General Liability" },
+    { value: "workers-comp", label: "Workers' Compensation" },
+    { value: "cyber-liability", label: "Cyber Liability" },
+    { value: "commercial-auto", label: "Commercial Auto" },
+    { value: "professional-liability", label: "Professional Liability" },
+    { value: "other", label: "Other" },
+];
+
 export default function BusinessInsurancePage() {
   return (
     <>
@@ -185,6 +195,7 @@ export default function BusinessInsurancePage() {
                   title="Start Your Business Insurance Quote"
                   serviceType="business"
                   className="bg-card"
+                  serviceOptions={quoteFormServices}
                 />
               </div>
             </div>

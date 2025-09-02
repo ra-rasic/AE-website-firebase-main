@@ -11,18 +11,34 @@ import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
+interface ServiceOption {
+  value: string;
+  label: string;
+}
+
 interface QuoteFormProps {
   title?: string;
   subtitle?: string;
   serviceType?: string;
   className?: string;
+  serviceOptions?: ServiceOption[];
 }
+
+const defaultServiceOptions: ServiceOption[] = [
+    { value: "auto", label: "Auto Insurance" },
+    { value: "homeowners", label: "Homeowners Insurance" },
+    { value: "business", label: "Business Insurance" },
+    { value: "flood", label: "Flood Insurance" },
+    { value: "condo", label: "Condo Insurance" },
+    { value: "other", label: "Other" },
+];
 
 export const QuoteForm: React.FC<QuoteFormProps> = ({ 
   title = "Get Your Free Quote",
   subtitle,
   serviceType = "",
-  className = ""
+  className = "",
+  serviceOptions = defaultServiceOptions,
 }) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -95,12 +111,9 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
                 <SelectValue placeholder="Select Insurance Type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="auto">Auto Insurance</SelectItem>
-                <SelectItem value="homeowners">Homeowners Insurance</SelectItem>
-                <SelectItem value="business">Business Insurance</SelectItem>
-                <SelectItem value="flood">Flood Insurance</SelectItem>
-                <SelectItem value="condo">Condo Insurance</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                {serviceOptions.map(option => (
+                    <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

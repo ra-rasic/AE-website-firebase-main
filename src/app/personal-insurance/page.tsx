@@ -56,6 +56,16 @@ const additionalServices = [
     "Secondary Home", "Rental Property", "Valuable Items", "And More..."
 ];
 
+const quoteFormServices = [
+    { value: "homeowners", label: "Homeowners Insurance" },
+    { value: "auto", label: "Auto Insurance" },
+    { value: "flood", label: "Flood Insurance" },
+    { value: "umbrella", label: "Umbrella Insurance" },
+    { value: "boat", label: "Boat/PWC Insurance" },
+    { value: "condo", label: "Condo Insurance" },
+    { value: "other", label: "Other" },
+];
+
 export default function PersonalInsurancePage() {
   return (
     <>
@@ -156,6 +166,7 @@ export default function PersonalInsurancePage() {
                   title="Start Your Personal Insurance Quote"
                   serviceType="personal"
                   className="bg-card"
+                  serviceOptions={quoteFormServices}
                 />
               </div>
             </div>
