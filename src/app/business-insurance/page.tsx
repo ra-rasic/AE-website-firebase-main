@@ -1,3 +1,4 @@
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
 import { Building, Shield, Users, Laptop, Truck, FileText } from 'lucide-react';
@@ -110,7 +111,7 @@ export default function BusinessInsurancePage() {
                   href={service.link}
                   className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-center"
                 >
-                  Get Quote
+                  Learn More & Get Quote
                 </Link>
               </Card>
             ))}

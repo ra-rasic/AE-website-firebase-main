@@ -1,3 +1,4 @@
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
 import { Home, Car, Umbrella, Anchor, Sailboat, Shield } from "lucide-react";
@@ -97,7 +98,7 @@ export default function PersonalInsurancePage() {
                   href={service.link}
                   className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-center"
                 >
-                  Learn More
+                  Learn More & Get Quote
                 </Link>
               </Card>
             ))}
