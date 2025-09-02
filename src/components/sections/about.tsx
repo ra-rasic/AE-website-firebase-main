@@ -16,7 +16,7 @@ const features = [
     {
         icon: <Award className="w-8 h-8 text-white" />,
         title: "Competitive Rates",
-        description: "We shop 50+ top-rated insurance carriers to find you the best coverage at the most competitive rates available in Florida.",
+        description: "We shop 30+ top-rated insurance carriers to find you the best coverage at the most competitive rates available in Florida.",
     },
 ];
 
