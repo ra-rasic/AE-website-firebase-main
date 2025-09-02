@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -100,7 +101,7 @@ export function Services() {
 
         <div className="text-center mt-16">
           <Button asChild size="lg">
-            <Link href="/personal-insurance">View All Services</Link>
+            <Link href="/services">View All Services</Link>
           </Button>
         </div>
       </div>
