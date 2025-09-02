@@ -68,7 +68,7 @@ export default function ContactPage() {
                   Call 239-591-1225
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 bg-transparent">
+              <Button asChild variant="secondary" size="lg" className="text-lg px-8">
                 <a href="mailto:Contact@aeinsurancegroup.net" className="flex items-center">
                   <Mail className="h-5 w-5 mr-2" />
                   Email Us
