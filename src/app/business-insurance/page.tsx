@@ -1,7 +1,7 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
-import { Building, Shield, Users, Laptop, Truck, FileText, CheckCircle } from 'lucide-react';
+import { Building, Shield, Users, Laptop, Truck, FileText, CheckCircle, Check } from 'lucide-react';
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -147,16 +147,18 @@ export default function BusinessInsurancePage() {
       </section>
 
       <section className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              We Serve Florida Industries
+              Industries We Serve in Florida
             </h2>
+            <p className="text-lg text-muted-foreground">We provide specialized insurance solutions for a wide range of local industries.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {industries.map((industry, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-800">{industry}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
+            {industries.map((industry) => (
+              <div key={industry} className="flex items-center">
+                <Check className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                <span className="text-muted-foreground">{industry}</span>
               </div>
             ))}
           </div>
