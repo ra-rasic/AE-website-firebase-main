@@ -2,7 +2,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
 import { About } from "@/components/sections/about";
-import { Testimonials } from "@/components/sections/testimonials";
 import { TrustIndicators } from "@/components/sections/trust-indicators";
 import { Cta } from "@/components/sections/cta";
 
@@ -13,7 +12,6 @@ export default function Home() {
       <TrustIndicators />
       <Services />
       <About />
-      <Testimonials />
       <Cta />
     </div>
   );
