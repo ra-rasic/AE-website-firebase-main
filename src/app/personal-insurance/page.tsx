@@ -147,15 +147,15 @@ export default function PersonalInsurancePage() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Shield className="w-5 h-5 mr-3 text-accent" />
+                    <Shield className="w-5 h-5 mr-3 text-green-400" />
                     <span>Free consultation and quotes</span>
                   </div>
                   <div className="flex items-center">
-                    <Shield className="w-5 h-5 mr-3 text-accent" />
+                    <Shield className="w-5 h-5 mr-3 text-green-400" />
                     <span>Same-day policy binding available</span>
                   </div>
                   <div className="flex items-center">
-                    <Shield className="w-5 h-5 mr-3 text-accent" />
+                    <Shield className="w-5 h-5 mr-3 text-green-400" />
                     <span>Claims support during business hours</span>
                   </div>
                 </div>
