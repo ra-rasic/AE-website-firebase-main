@@ -34,7 +34,7 @@ export function Hero() {
                 </div>
                 <div className="flex items-center">
                   <Award className="w-6 h-6 mr-2 text-green-400" />
-                  <span className="font-medium">22 Years Experience</span>
+                  <span className="font-medium">23 Years Experience</span>
                 </div>
                 <div className="flex items-center">
                   <Users className="w-6 h-6 mr-2 text-green-400" />
