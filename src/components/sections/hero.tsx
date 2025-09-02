@@ -43,7 +43,11 @@ export function Hero() {
               </div>
           </div>
            <div className="lg:pl-8" id="quote">
-              <QuoteForm className="bg-white/95 backdrop-blur-sm" />
+              <QuoteForm 
+                title="Get Your Quote"
+                subtitle="Fast, free, no obligation"
+                className="bg-white/95 backdrop-blur-sm" 
+              />
             </div>
         </div>
       </div>

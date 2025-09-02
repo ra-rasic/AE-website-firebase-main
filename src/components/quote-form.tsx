@@ -13,12 +13,14 @@ import { useToast } from '@/hooks/use-toast';
 
 interface QuoteFormProps {
   title?: string;
+  subtitle?: string;
   serviceType?: string;
   className?: string;
 }
 
 export const QuoteForm: React.FC<QuoteFormProps> = ({ 
-  title = "Get Your Free Quote", 
+  title = "Get Your Free Quote",
+  subtitle,
   serviceType = "",
   className = ""
 }) => {
@@ -43,7 +45,8 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
 
   return (
     <div className={cn('bg-card rounded-lg shadow-xl p-8', className)}>
-      <h3 className="text-2xl font-bold text-card-foreground mb-6">{title}</h3>
+      <h3 className="text-2xl font-bold text-card-foreground">{title}</h3>
+      {subtitle && <p className="text-muted-foreground mb-6 mt-1 text-black/80">{subtitle}</p>}
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
