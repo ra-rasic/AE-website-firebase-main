@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -95,7 +96,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
                 <SelectItem value="homeowners">Homeowners Insurance</SelectItem>
                 <SelectItem value="business">Business Insurance</SelectItem>
                 <SelectItem value="flood">Flood Insurance</SelectItem>
-                <SelectItem value="umbrella">Umbrella Insurance</SelectItem>
+                <SelectItem value="condo">Condo Insurance</SelectItem>
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
             </Select>
