@@ -5,7 +5,7 @@ import { Phone } from "lucide-react";
 
 export function Cta() {
     return (
-        <section className="py-16 bg-secondary">
+        <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-4xl font-bold text-foreground mb-4">Ready to Save on Insurance?</h2>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
