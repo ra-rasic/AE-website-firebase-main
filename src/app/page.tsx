@@ -12,6 +12,7 @@ export default function Home() {
       <Hero />
       <TrustIndicators />
       <Services />
+      <About />
       <Testimonials />
       <Cta />
     </div>
