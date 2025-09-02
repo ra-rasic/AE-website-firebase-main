@@ -3,10 +3,11 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetClose, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetClose, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Menu, X, Phone, Mail, Shield, ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import { usePathname } from 'next/navigation';
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -120,6 +121,9 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
+                <SheetHeader>
+                    <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                </SheetHeader>
                  <div className="flex justify-between items-center border-b pb-4 mb-4">
                      <Link href="/" className="flex items-center space-x-2">
                         <Shield className="w-8 h-8 text-primary" />
