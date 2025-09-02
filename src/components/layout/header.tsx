@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { 
-    href: "#", 
+    href: "/services", 
     label: "Insurance Services",
     subLinks: [
       { href: "/personal-insurance", label: "Personal Insurance" },
@@ -36,16 +36,22 @@ const navLinks = [
 
 function NavLinks() {
     const pathname = usePathname();
-    const isActive = (path: string) => pathname === path;
+    const isActive = (path: string) => pathname === path || (path === '/services' && (pathname.startsWith('/personal-insurance') || pathname.startsWith('/business-insurance')));
   
     return (
       <nav className="hidden lg:flex items-center space-x-6">
         {navLinks.map((link) => (
           link.subLinks ? (
             <div key={link.label} className="relative group">
-              <button className="flex items-center font-medium text-foreground hover:text-primary transition-colors">
+              <Link
+                href={link.href}
+                className={cn(
+                  "flex items-center font-medium text-foreground hover:text-primary transition-colors",
+                  isActive(link.href) && "text-primary"
+                )}
+              >
                 {link.label} <ChevronDown className="w-4 h-4 ml-1" />
-              </button>
+              </Link>
               <div className="absolute top-full left-0 mt-2 w-56 bg-card rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-2">
                   {link.subLinks.map(subLink => (
