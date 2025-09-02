@@ -1,7 +1,7 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
-import { Building, Shield, Users, Laptop, Truck, FileText } from 'lucide-react';
+import { Building, Shield, Users, Laptop, Truck, FileText, CheckCircle } from 'lucide-react';
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -51,9 +51,10 @@ const businessServices = [
   ];
 
   const additionalServices = [
-    "Commercial Property Insurance", "Directors & Officers Liability", "Employment Practices Liability",
-    "Commercial Umbrella", "Builders Risk Insurance", "Business Interruption", "Crime Insurance",
-    "Commercial Bonds", "Surety Bonds", "Event Insurance", "Liquor Liability", "Inland Marine"
+    "Commercial Property", "Directors & Officers", "Employment Practices",
+    "Commercial Umbrella", "Builders Risk", "Business Interruption", 
+    "Crime Insurance", "Surety Bonds", "Event Insurance",
+    "Liquor Liability", "Inland Marine", "And More..."
   ];
   
 const industries = [
@@ -66,10 +67,10 @@ export default function BusinessInsurancePage() {
   return (
     <>
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Business Insurance' }]} />
-      <section className="bg-gray-900 text-white py-16">
+      <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-4">Business Insurance Solutions</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
             Protect your Florida business with comprehensive commercial insurance coverage. 
             From startups to established enterprises, we have the expertise to safeguard your success.
           </p>
@@ -119,22 +120,23 @@ export default function BusinessInsurancePage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-8">
             Additional Commercial Insurance Products
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {additionalServices.map((service, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:bg-blue-50 transition-colors">
-                <p className="font-medium text-gray-800">{service}</p>
+              <div key={index} className="bg-card rounded-lg p-4 shadow-sm hover:shadow-lg transition-shadow duration-300 flex items-center">
+                <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                <p className="font-medium text-card-foreground">{service}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-blue-100">
+      <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">

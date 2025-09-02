@@ -1,7 +1,7 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
-import { Home, Car, Umbrella, Anchor, Sailboat, Shield } from "lucide-react";
+import { Home, Car, Umbrella, Anchor, Sailboat, Shield, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -51,9 +51,9 @@ const personalServices = [
 ];
 
 const additionalServices = [
-    "Renters Insurance", "Classic Car Insurance", "RV Insurance", "Motorcycle Insurance",
-    "Mobile Home Insurance", "Yacht Insurance", "Vacant Home Insurance", 
-    "Secondary Home Insurance", "Rental Property Insurance", "Valuable Possessions Insurance"
+    "Renters Insurance", "Classic Car", "RV Insurance", "Motorcycle",
+    "Mobile Home", "Yacht Insurance", "Vacant Home", 
+    "Secondary Home", "Rental Property", "Valuable Items", "And More..."
 ];
 
 export default function PersonalInsurancePage() {
@@ -112,9 +112,10 @@ export default function PersonalInsurancePage() {
             Additional Personal Insurance Services
           </h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {additionalServices.map((service, index) => (
-              <div key={index} className="bg-card rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div key={index} className="bg-card rounded-lg p-4 shadow-sm hover:shadow-lg transition-shadow duration-300 flex items-center">
+                <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
                 <p className="font-medium text-card-foreground">{service}</p>
               </div>
             ))}
