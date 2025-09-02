@@ -21,7 +21,7 @@ const faqData = [
         },
         {
           question: "How much does insurance cost in Florida?",
-          answer: "Insurance costs vary based on location, coverage type, and individual factors. Florida rates can be higher due to hurricane risk, but we work with 50+ carriers to find competitive rates. Contact us for a personalized quote based on your specific needs."
+          answer: "Insurance costs vary based on location, coverage type, and individual factors. Florida rates can be higher due to hurricane risk, but we work with 30+ carriers to find competitive rates. Contact us for a personalized quote based on your specific needs."
         }
       ]
     },

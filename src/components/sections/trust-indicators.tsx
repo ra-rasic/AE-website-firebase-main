@@ -1,8 +1,9 @@
+
 export function TrustIndicators() {
   const indicators = [
     { value: "30+", label: "Years of Experience" },
     { value: "2,500+", label: "Satisfied Customers" },
-    { value: "50+", label: "Insurance Carriers" },
+    { value: "30+", label: "Insurance Carriers" },
     { value: "4.9★", label: "Customer Rating" },
   ];
 

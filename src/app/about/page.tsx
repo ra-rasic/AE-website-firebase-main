@@ -55,7 +55,7 @@ export default function AboutPage() {
                   </li>
                   <li className="flex items-start">
                     <Award className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Competitive rates from 50+ top-rated carriers</span>
+                    <span className="text-muted-foreground">Competitive rates from 30+ top-rated carriers</span>
                   </li>
                   <li className="flex items-start">
                     <Clock className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
