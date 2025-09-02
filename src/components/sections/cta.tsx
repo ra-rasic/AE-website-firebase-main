@@ -5,10 +5,10 @@ import { Phone } from "lucide-react";
 
 export function Cta() {
     return (
-        <section className="py-16 bg-primary text-white">
+        <section className="py-16 bg-secondary">
             <div className="container mx-auto px-4 text-center">
-                <h2 className="text-4xl font-bold mb-4">Ready to Save on Insurance?</h2>
-                <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+                <h2 className="text-4xl font-bold text-foreground mb-4">Ready to Save on Insurance?</h2>
+                <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                     Join thousands of satisfied Florida customers who trust A & E Insurance Group 
                     for their insurance needs. Get your free quote in minutes.
                 </p>
