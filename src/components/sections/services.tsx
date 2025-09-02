@@ -99,7 +99,7 @@ export function Services() {
         </div>
 
         <div className="text-center mt-16">
-          <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">
+          <Button asChild size="lg">
             <Link href="/personal-insurance">View All Services</Link>
           </Button>
         </div>
