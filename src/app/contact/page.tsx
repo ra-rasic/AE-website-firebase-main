@@ -62,7 +62,7 @@ export default function ContactPage() {
               Get in touch with Southwest Florida's trusted insurance experts. We're here to help with quotes, claims, policy questions, and more.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="text-lg px-8">
+              <Button size="lg" className="text-lg px-8">
                 <a href="tel:239-591-1225" className="flex items-center">
                   <Phone className="h-5 w-5 mr-2" />
                   Call 239-591-1225
