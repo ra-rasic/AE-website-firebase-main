@@ -4,7 +4,6 @@ import { Services } from "@/components/sections/services";
 import { About } from "@/components/sections/about";
 import { Testimonials } from "@/components/sections/testimonials";
 import { TrustIndicators } from "@/components/sections/trust-indicators";
-import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { Cta } from "@/components/sections/cta";
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <TrustIndicators />
       <Services />
-      <WhyChooseUs />
       <Testimonials />
       <Cta />
     </div>
