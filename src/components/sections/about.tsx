@@ -22,7 +22,7 @@ const features = [
 
 export function About() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-blue-50">
+    <section id="about" className="py-16 md:py-24 bg-card">
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Why Choose A & E Insurance Group?</h2>
