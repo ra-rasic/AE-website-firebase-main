@@ -30,7 +30,7 @@ export function Hero() {
              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 text-primary-foreground/90 pt-4">
                 <div className="flex items-center">
                   <Shield className="w-6 h-6 mr-2 text-green-400" />
-                  <span className="font-medium">20+ Insurance Carriers</span>
+                  <span className="font-medium">30+ Insurance Carriers</span>
                 </div>
                 <div className="flex items-center">
                   <Award className="w-6 h-6 mr-2 text-green-400" />
