@@ -62,13 +62,13 @@ export default function ContactPage() {
               Get in touch with Southwest Florida's trusted insurance experts. We're here to help with quotes, claims, policy questions, and more.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
+              <Button size="lg" className="text-lg px-8" asChild>
                 <a href="tel:239-591-1225" className="flex items-center">
                   <Phone className="h-5 w-5 mr-2" />
                   Call 239-591-1225
                 </a>
               </Button>
-              <Button asChild variant="secondary" size="lg" className="text-lg px-8">
+              <Button asChild variant="outline" size="lg" className="text-lg px-8 bg-white text-primary border-primary hover:bg-primary hover:text-primary-foreground">
                 <a href="mailto:Contact@aeinsurancegroup.net" className="flex items-center">
                   <Mail className="h-5 w-5 mr-2" />
                   Email Us
