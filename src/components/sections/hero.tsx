@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle } from "lucide-react";
+import { Shield, Award, Users } from "lucide-react";
 import { QuoteForm } from "../quote-form";
 
 export function Hero() {
@@ -26,18 +27,18 @@ export function Hero() {
             <p className="text-lg md:text-xl text-primary-foreground/90">
               Serving Collier and Lee Counties with comprehensive insurance solutions. Get personalized coverage that protects what matters most to you and your family.
             </p>
-             <div className="flex items-center space-x-6 text-primary-foreground/90">
+             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 text-primary-foreground/90 pt-4">
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                  <span>Licensed in Florida</span>
+                  <Shield className="w-6 h-6 mr-2 text-green-400" />
+                  <span className="font-medium">20+ Insurance Carriers</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                  <span>Local Experts</span>
+                  <Award className="w-6 h-6 mr-2 text-green-400" />
+                  <span className="font-medium">22 Years Experience</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                  <span>Free Quotes</span>
+                  <Users className="w-6 h-6 mr-2 text-green-400" />
+                  <span className="font-medium">Local Claims Support</span>
                 </div>
               </div>
           </div>
