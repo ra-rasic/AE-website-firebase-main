@@ -1,4 +1,5 @@
 
+
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -82,21 +83,22 @@ const serviceData: { [key: string]: any } = {
       subtitle: 'Essential Flood Protection for Florida Properties',
       description: 'Protect your Florida property with comprehensive flood insurance through the NFIP and private carriers. Standard homeowners policies DO NOT cover flood damage.',
       icon: <Anchor className="w-12 h-12 text-accent" />,
-      requirements: [
-        'Building coverage for the structure of your home',
-        'Contents coverage for your personal belongings',
-        'Often required for mortgages in designated high-risk flood zones',
-        'A separate policy from your standard homeowners insurance'
+      coverageOptions: [
+        { title: "NFIP Coverage", description: "Government-backed flood insurance with standardized rates from the National Flood Insurance Program.", icon: Shield },
+        { title: "Private Flood Insurance", description: "Often offers more comprehensive coverage, higher limits, and additional benefits than the NFIP.", icon: Droplets },
       ],
-      benefits: [
-        'Policies from the National Flood Insurance Program (NFIP)',
-        'Competitive private market flood insurance options',
-        'Higher coverage limits available vs. standard NFIP policies',
-        'Replacement cost options for both structure and contents',
-        'Coverage for detached garages and other structures',
-        'Some private policies offer shorter or no waiting periods'
+      whatsCovered: [
+        { title: "Building Coverage", description: "Protects the structure of your home, including the foundation, electrical/plumbing systems, HVAC, and permanently installed items like cabinets." },
+        { title: "Contents Coverage", description: "Covers your personal belongings, such as furniture, clothing, electronics, and other valuables, from flood damage." },
       ],
-      localInfo: 'Southwest Florida faces significant flood risk from storm surge, hurricanes, and heavy rainfall. Standard homeowners policies explicitly exclude flood damage, making a separate flood policy essential, even if you are not in a high-risk "AE" or "VE" zone. Over 25% of all flood claims occur in low-to-moderate risk "X" zones.',
+      floodZones: [
+        { zone: "Zone X", risk: "Low-to-Moderate Risk", description: "Areas outside the high-risk floodplains. Flood insurance is still highly recommended as over 25% of claims occur here." },
+        { zone: "Zone AE", risk: "High Risk", description: "Areas with a 1% annual chance of flooding. Flood insurance is typically required by mortgage lenders." },
+        { zone: "Zone VE", risk: "High Risk (Coastal)", description: "Coastal areas with an additional hazard from storm-induced wave action. The highest risk zone." },
+      ],
+      discounts: [
+        "Preferred Risk Policies", "Community Rating System (CRS) Discount", "Elevation Certificate Savings", "Flood Vents & Mitigation Credits"
+      ],
       factors: [
         'FEMA flood zone designation (e.g., AE, VE, X)',
         'The property\'s elevation and foundation type (e.g., slab-on-grade, elevated)',
@@ -493,6 +495,71 @@ const HomeownersInsurancePageContent = ({ service }: { service: any }) => (
     </>
 );
 
+const FloodInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">NFIP vs. Private Flood Insurance</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+                {service.coverageOptions.map((option: {title: string, description: string, icon: React.ElementType}, index: number) => {
+                    const Icon = option.icon;
+                    return (
+                        <div key={index}>
+                            <h3 className="font-semibold text-card-foreground flex items-center mb-2">
+                                <Icon className="w-5 h-5 text-primary mr-2" />
+                                {option.title}
+                            </h3>
+                            <p className="text-muted-foreground text-sm">{option.description}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">What Flood Insurance Covers</h2>
+            <div className="space-y-4">
+                {service.whatsCovered.map((item: {title: string, description: string}, index: number) => (
+                    <div key={index}>
+                        <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+             <p className="text-xs text-muted-foreground mt-4">Note: Coverage for basements and Additional Living Expenses can vary, especially between NFIP and private policies.</p>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Understanding Florida Flood Zones</h2>
+            <div className="space-y-4">
+                {service.floodZones.map((zone: {zone: string, risk: string, description: string}, index: number) => (
+                    <div key={index} className="flex items-start">
+                        <div className="w-20 font-bold text-primary flex-shrink-0">{zone.zone}:</div>
+                        <div>
+                            <h4 className="font-semibold">{zone.risk}</h4>
+                            <p className="text-muted-foreground text-sm">{zone.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </Card>
+        
+        <Card className="p-8 mb-8 shadow-lg bg-secondary">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <BadgePercent className="w-6 h-6 text-primary mr-3" />
+                Ways to Save on Flood Insurance
+            </h2>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                {service.discounts.map((discount: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{discount}</span>
+                    </div>
+                ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-4">An Elevation Certificate can significantly lower your premium in high-risk zones.</p>
+        </Card>
+    </>
+);
 
 const DefaultServicePageContent = ({ service }: { service: any }) => (
     <>
@@ -553,6 +620,8 @@ export default function ServicePage({ params }: { params: { service: string } })
             return <AutoInsurancePageContent service={currentService} />;
         case 'homeowners':
             return <HomeownersInsurancePageContent service={currentService} />;
+        case 'flood':
+            return <FloodInsurancePageContent service={currentService} />;
         default:
             return <DefaultServicePageContent service={currentService} />;
     }
@@ -656,3 +725,5 @@ export default function ServicePage({ params }: { params: { service: string } })
     </>
   );
 }
+
+    
