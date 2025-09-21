@@ -206,7 +206,7 @@ export default function RequestPolicyChangePage() {
                       name="effectiveDate"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel>Requested Effective Date *</FormLabel>
+                          <FormLabel>Effective Date of Change *</FormLabel>
                            <DatePicker field={field} />
                           <FormMessage />
                         </FormItem>
