@@ -203,23 +203,20 @@ const serviceData: { [key: string]: any } = {
     'bop': {
       title: 'Business Owners Policy (BOP)',
       subtitle: 'Comprehensive Coverage for Florida Businesses',
-      description: 'Protect your Florida business with a Business Owners Policy.',
+      description: 'A cost-effective package combining property, liability, and business interruption coverage for small to medium businesses.',
       icon: <Building className="w-12 h-12 text-accent" />,
-      requirements: [
-        'General liability coverage for third-party claims',
-        'Commercial property protection for your assets',
-        'Business interruption coverage for lost income',
-        'Crime and theft protection'
+      coreComponents: [
+        { title: "Commercial Property", description: "Protects your building, equipment, and inventory.", icon: Building },
+        { title: "General Liability", description: "Covers third-party claims of bodily injury or property damage.", icon: Shield },
+        { title: "Business Interruption", description: "Replaces lost income if your business has to temporarily close.", icon: FileWarning },
       ],
-      benefits: [
-        'Cost-effective package pricing',
-        'Comprehensive business protection in one policy',
-        'Business interruption coverage included',
-        'Equipment breakdown coverage options',
-        'Available professional liability endorsements',
-        'Tailored for Florida hurricane and business risks'
+      optionalEnhancements: [
+        "Equipment Breakdown", "Crime Coverage", "Cyber Liability", "Employment Practices Liability"
       ],
-      localInfo: 'Florida businesses face hurricane risks, high litigation rates, and specific state requirements. A BOP provides essential, broad protection at an affordable price for small to medium-sized businesses.',
+      industries: [
+        "Retail Stores", "Restaurants", "Professional Services", "Healthcare Practices", "Contractors", "Wholesale"
+      ],
+      localInfo: 'A BOP is an efficient way for Florida businesses to get broad protection against common risks, from hurricane property damage to slip-and-fall lawsuits, all in one policy.',
       factors: [
         'Business type and industry classification',
         'Annual revenue and number of employees',
@@ -751,38 +748,89 @@ const CondoInsurancePageContent = ({ service }: { service: any }) => (
     </>
   );
 
-const DefaultServicePageContent = ({ service }: { service: any }) => (
+const BusinessInsurancePageContent = ({ service }: { service: any }) => (
     <>
-        <Card className="p-8 mb-8 shadow-lg">
-        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-            <Shield className="w-6 h-6 text-primary mr-3" />
-            Coverage Requirements
-        </h2>
-        <ul className="space-y-3">
-            {service.requirements.map((req: string, index: number) => (
-            <li key={index} className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground">{req}</span>
-            </li>
-            ))}
-        </ul>
-        </Card>
+        {service.coreComponents && (
+            <Card className="p-8 mb-8 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-6">What's Included in Your BOP</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {service.coreComponents.map((item: {title: string, description: string, icon: React.ElementType}, index: number) => {
+                        const Icon = item.icon;
+                        return (
+                            <div key={index}>
+                                <Icon className="w-8 h-8 text-primary mb-3" />
+                                <h3 className="font-semibold text-card-foreground mb-2">{item.title}</h3>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            </Card>
+        )}
+        
+        {service.optionalEnhancements && (
+            <Card className="p-8 mb-8 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Optional Coverage Enhancements</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+                    {service.optionalEnhancements.map((enhancement: string, index: number) => (
+                        <div key={index} className="flex items-start">
+                            <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                            <span className="text-muted-foreground">{enhancement}</span>
+                        </div>
+                    ))}
+                </div>
+            </Card>
+        )}
 
-        <Card className="p-8 mb-8 shadow-lg">
-        <h2 className="text-2xl font-bold text-foreground mb-6">Why Choose Our Coverage?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-            {service.benefits.map((benefit: string, index: number) => (
-            <div key={index} className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground">{benefit}</span>
-            </div>
-            ))}
-        </div>
-        </Card>
+        {(service.requirements || service.benefits) && (
+             <Card className="p-8 mb-8 shadow-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {service.requirements && (
+                        <div>
+                            <h2 className="text-2xl font-bold text-foreground mb-6">Key Coverages</h2>
+                            <ul className="space-y-3">
+                                {service.requirements.map((req: string, index: number) => (
+                                <li key={index} className="flex items-start">
+                                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                                    <span className="text-muted-foreground">{req}</span>
+                                </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                     {service.benefits && (
+                        <div>
+                            <h2 className="text-2xl font-bold text-foreground mb-6">Benefits</h2>
+                             <ul className="space-y-3">
+                                {service.benefits.map((benefit: string, index: number) => (
+                                <li key={index} className="flex items-start">
+                                    <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                                    <span className="text-muted-foreground">{benefit}</span>
+                                </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+             </Card>
+        )}
 
+        {service.industries && (
+             <Card className="p-8 mb-8 shadow-lg">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Industries We Serve</h2>
+                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {service.industries.map((type: string) => (
+                    <div key={type} className="flex items-center justify-center p-3 bg-muted/50 rounded-md">
+                        <span className="font-medium text-sm text-muted-foreground">{type}</span>
+                    </div>
+                    ))}
+                </div>
+             </Card>
+        )}
+        
         <Card className="p-8 mb-8 shadow-lg bg-secondary">
-        <h2 className="text-2xl font-bold text-foreground mb-4">Florida-Specific Considerations</h2>
-        <p className="text-muted-foreground leading-relaxed">{service.localInfo}</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Florida-Specific Considerations</h2>
+            <p className="text-muted-foreground leading-relaxed">{service.localInfo}</p>
         </Card>
     </>
 )
@@ -819,7 +867,7 @@ export default function ServicePage({ params }: { params: { service: string } })
         case 'condo-insurance':
             return <CondoInsurancePageContent service={currentService} />;
         default:
-            return <DefaultServicePageContent service={currentService} />;
+            return <BusinessInsurancePageContent service={currentService} />;
     }
   }
 
