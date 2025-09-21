@@ -1,3 +1,4 @@
+
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -79,36 +80,36 @@ const serviceData: { [key: string]: any } = {
     'flood': {
       title: 'Flood Insurance Florida',
       subtitle: 'Essential Flood Protection for Florida Properties',
-      description: 'Protect your Florida property with comprehensive flood insurance through the NFIP and private carriers.',
+      description: 'Protect your Florida property with comprehensive flood insurance through the NFIP and private carriers. Standard homeowners policies DO NOT cover flood damage.',
       icon: <Anchor className="w-12 h-12 text-accent" />,
       requirements: [
-        'Building coverage for the structure',
-        'Contents coverage for your belongings',
-        'Often required for mortgages in designated flood zones',
-        'Separate policy from homeowners insurance'
+        'Building coverage for the structure of your home',
+        'Contents coverage for your personal belongings',
+        'Often required for mortgages in designated high-risk flood zones',
+        'A separate policy from your standard homeowners insurance'
       ],
       benefits: [
-        'National Flood Insurance Program (NFIP) policies',
-        'Private market flood insurance options',
-        'Higher coverage limits available vs. standard policies',
-        'Replacement cost options for structure and contents',
+        'Policies from the National Flood Insurance Program (NFIP)',
+        'Competitive private market flood insurance options',
+        'Higher coverage limits available vs. standard NFIP policies',
+        'Replacement cost options for both structure and contents',
         'Coverage for detached garages and other structures',
-        'No waiting period in some private market cases'
+        'Some private policies offer shorter or no waiting periods'
       ],
-      localInfo: 'Southwest Florida faces significant flood risk. Standard homeowners policies explicitly exclude flood damage, making a separate flood policy essential, even if you are not in a high-risk zone.',
+      localInfo: 'Southwest Florida faces significant flood risk from storm surge, hurricanes, and heavy rainfall. Standard homeowners policies explicitly exclude flood damage, making a separate flood policy essential, even if you are not in a high-risk "AE" or "VE" zone. Over 25% of all flood claims occur in low-to-moderate risk "X" zones.',
       factors: [
-        'FEMA flood zone designation (e.g., AE, X)',
-        'Property elevation and foundation type',
-        'Previous flood claims history',
-        'The community\'s participation in the NFIP',
-        'Desired coverage limits and deductibles'
+        'FEMA flood zone designation (e.g., AE, VE, X)',
+        'The property\'s elevation and foundation type (e.g., slab-on-grade, elevated)',
+        'Previous flood claims history for the property',
+        'The community\'s participation and rating in the NFIP',
+        'Your desired coverage limits and deductible amounts'
       ],
       breadcrumb: "Flood Insurance"
     },
     'umbrella': {
-      title: 'Umbrella Insurance Florida',
-      subtitle: 'Extra Liability Protection for Florida Residents',
-      description: 'Extend your liability protection beyond your auto and home insurance limits with personal umbrella coverage.',
+      title: 'Umbrella Insurance',
+      subtitle: 'Extra Liability Protection for Your Assets',
+      description: 'Extend your liability protection beyond your auto and home insurance limits.',
       icon: <Umbrella className="w-12 h-12 text-accent" />,
       requirements: [
         'An underlying auto insurance policy',
@@ -135,9 +136,9 @@ const serviceData: { [key: string]: any } = {
       breadcrumb: "Umbrella Insurance"
     },
     'boat': {
-        title: 'Boat & PWC Insurance Florida',
+        title: 'Boat & PWC Insurance',
         subtitle: 'Marine Insurance for Florida Waters',
-        description: 'Comprehensive boat and personal watercraft insurance for Florida boaters and PWC owners.',
+        description: 'Comprehensive boat and personal watercraft insurance for Florida boaters.',
         icon: <Sailboat className="w-12 h-12 text-accent" />,
         requirements: [
           'Hull coverage for physical damage to your vessel',
@@ -164,9 +165,9 @@ const serviceData: { [key: string]: any } = {
         breadcrumb: "Boat & PWC Insurance"
     },
     'condo-insurance': {
-        title: 'Condo Insurance Florida (HO-6)',
-        subtitle: 'Specialized HO-6 Coverage for Florida Condos',
-        description: 'Protect your Florida condo unit with an HO-6 policy covering your interior, belongings, and liability.',
+        title: 'Condo Insurance (HO-6)',
+        subtitle: 'Specialized Coverage for Florida Condos',
+        description: 'Protect your Florida condo unit with an HO-6 policy.',
         icon: <Shield className="w-12 h-12 text-accent" />,
         requirements: [
           'Coverage for interior walls, fixtures, and appliances',
@@ -193,9 +194,9 @@ const serviceData: { [key: string]: any } = {
         breadcrumb: "Condo Insurance"
     },
     'bop': {
-      title: 'Business Owners Insurance Florida',
-      subtitle: 'Comprehensive BOP Coverage for Florida Businesses',
-      description: 'Protect your Florida business with a Business Owners Policy combining liability and property coverage.',
+      title: 'Business Owners Policy (BOP)',
+      subtitle: 'Comprehensive Coverage for Florida Businesses',
+      description: 'Protect your Florida business with a Business Owners Policy.',
       icon: <Building className="w-12 h-12 text-accent" />,
       requirements: [
         'General liability coverage for third-party claims',
@@ -222,9 +223,9 @@ const serviceData: { [key: string]: any } = {
       breadcrumb: "Business Owners Policy"
     },
     'general-liability': {
-        title: 'General Liability Insurance Florida',
+        title: 'General Liability',
         subtitle: 'Essential Business Liability Protection',
-        description: 'Protect your Florida business against third-party claims with comprehensive general liability coverage.',
+        description: 'Protect your Florida business against third-party claims.',
         icon: <Shield className="w-12 h-12 text-accent" />,
         requirements: [
             'Bodily injury liability coverage',
@@ -251,9 +252,9 @@ const serviceData: { [key: string]: any } = {
         breadcrumb: "General Liability"
     },
     'workers-comp': {
-        title: 'Workers Compensation Insurance Florida',
-        subtitle: 'Required Workers\' Comp Coverage for Florida Employers',
-        description: 'Mandatory workers\' compensation insurance for Florida businesses to protect employees and comply with state law.',
+        title: 'Workers Compensation',
+        subtitle: 'Required Coverage for Florida Employers',
+        description: 'Mandatory workers\' compensation insurance for Florida businesses.',
         icon: <Users className="w-12 h-12 text-accent" />,
         requirements: [
             'Coverage for all eligible employees per state law',
@@ -280,9 +281,9 @@ const serviceData: { [key: string]: any } = {
         breadcrumb: "Workers' Compensation"
     },
     'cyber-liability': {
-        title: 'Cyber Liability Insurance Florida',
+        title: 'Cyber Liability',
         subtitle: 'Protect Your Business from Digital Threats',
-        description: 'Essential cyber liability insurance to protect Florida businesses from data breaches and cyber attacks.',
+        description: 'Essential cyber liability insurance for Florida businesses.',
         icon: <Laptop className="w-12 h-12 text-accent" />,
         requirements: [
             'Data breach response coverage',
@@ -309,9 +310,9 @@ const serviceData: { [key: string]: any } = {
         breadcrumb: "Cyber Liability"
     },
      'commercial-property': {
-      title: 'Commercial Property Insurance Florida',
+      title: 'Commercial Property Insurance',
       subtitle: 'Protect Your Florida Business Property',
-      description: 'Comprehensive commercial property insurance for Florida businesses against hurricanes, theft, and other perils.',
+      description: 'Comprehensive commercial property insurance for Florida businesses.',
       icon: <Building className="w-12 h-12 text-accent" />,
       requirements: [
         'Building coverage for owned structures',
@@ -338,9 +339,9 @@ const serviceData: { [key: string]: any } = {
       breadcrumb: "Commercial Property"
     },
     'errors-omissions': {
-        title: 'Professional Liability (E&O) Insurance Florida',
+        title: 'Professional Liability (E&O)',
         subtitle: 'Errors & Omissions Coverage for Service Providers',
-        description: 'Protect your professional services business from claims of negligence or failure to perform.',
+        description: 'Protect your professional services business from claims of negligence.',
         icon: <FileText className="w-12 h-12 text-accent" />,
         requirements: [
           'Coverage for professional negligence',
