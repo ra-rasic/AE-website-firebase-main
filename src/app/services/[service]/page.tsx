@@ -229,7 +229,7 @@ const serviceData: { [key: string]: any } = {
     'general-liability': {
         title: 'General Liability',
         subtitle: 'Essential Business Liability Protection',
-        description: 'Protect your Florida business against third-party claims.',
+        description: 'Protect your Florida business against third-party claims of bodily injury, property damage, and personal injury.',
         icon: <Shield className="w-12 h-12 text-accent" />,
         requirements: [
             'Bodily injury liability coverage',
