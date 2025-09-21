@@ -109,23 +109,22 @@ const serviceData: { [key: string]: any } = {
       breadcrumb: "Flood Insurance"
     },
     'umbrella': {
-      title: 'Umbrella Insurance',
+      title: 'Umbrella Insurance Florida',
       subtitle: 'Extra Liability Protection for Your Assets',
-      description: 'Extend your liability protection beyond your auto and home insurance limits.',
+      description: 'Extend your liability protection beyond your auto and home insurance limits with personal umbrella insurance, protecting your assets and future earnings.',
       icon: <Umbrella className="w-12 h-12 text-accent" />,
       requirements: [
-        'An underlying auto insurance policy',
-        'An underlying homeowners or renters insurance policy',
-        'Minimum liability limits on your base policies (e.g., $300k)',
-        'A generally clean driving and claims history'
+        { title: "Personal Liability Protection", description: "Provides an additional layer of liability coverage, typically from $1 million to $5 million or more, on top of your existing home and auto policies." },
+        { title: "Legal Defense Costs", description: "Covers attorney fees, court costs, and legal expenses for covered liability claims, often outside of the main policy limit, even if the lawsuit is groundless." },
       ],
       benefits: [
-        'Coverage from $1 million to $10 million+',
-        'Protection against major lawsuits and judgments',
-        'Worldwide liability coverage for travel',
-        'Covers legal defense costs, often outside the limit',
-        'Protects your current assets and future earnings',
-        'Affordable annual premiums for significant protection'
+        { title: "Worldwide Coverage", description: "Your liability protection extends globally, offering peace of mind when you travel abroad." },
+        { title: "Broader Coverage", description: "Can cover claims not included in your underlying policies, such as libel, slander, false arrest, and rental property liability." },
+        { title: "Asset Protection", description: "Safeguards your savings, investments, home, and future income from being seized to pay for a large judgment against you." },
+      ],
+      scenarios: [
+          { title: "Major Auto Accident", description: "You cause a multi-vehicle accident with severe injuries. The damages total $1 million, but your auto policy's liability limit is $300,000. Your umbrella policy covers the remaining $700,000, protecting your assets." },
+          { title: "Incident at Your Home", description: "A guest is seriously injured diving into your pool and sues for $1.5 million. Your homeowners liability limit is $500,000. Your umbrella policy provides the additional $1 million of coverage needed." },
       ],
       localInfo: 'In a high-asset, litigious state like Florida, an umbrella policy is a critical tool for asset protection. It provides an essential safety net against unforeseen, catastrophic events.',
       factors: [
@@ -561,6 +560,57 @@ const FloodInsurancePageContent = ({ service }: { service: any }) => (
     </>
 );
 
+const UmbrellaInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+          <Shield className="w-6 h-6 text-primary mr-3" />
+          Essential Umbrella Coverages
+        </h2>
+        <div className="space-y-4">
+          {service.requirements.map((item: { title: string; description: string }, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+  
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Additional Smart Coverages</h2>
+        <div className="space-y-4">
+          {service.benefits.map((item: { title: string; description: string }, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+  
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">When Umbrella Insurance Saves You</h2>
+        <p className="text-muted-foreground mb-4 text-sm">
+            Real scenarios where umbrella insurance provides crucial protection beyond your standard policy limits.
+        </p>
+        <div className="grid md:grid-cols-2 gap-6">
+            {service.scenarios.map((item: { title: string; description: string }, index: number) => (
+                <div key={index} className="bg-secondary/50 p-4 rounded-lg">
+                    <h3 className="font-semibold text-card-foreground mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                </div>
+            ))}
+        </div>
+      </Card>
+
+      <Card className="p-8 mb-8 shadow-lg bg-secondary">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Florida-Specific Considerations</h2>
+        <p className="text-muted-foreground leading-relaxed">{service.localInfo}</p>
+      </Card>
+    </>
+);
+
 const DefaultServicePageContent = ({ service }: { service: any }) => (
     <>
         <Card className="p-8 mb-8 shadow-lg">
@@ -622,6 +672,8 @@ export default function ServicePage({ params }: { params: { service: string } })
             return <HomeownersInsurancePageContent service={currentService} />;
         case 'flood':
             return <FloodInsurancePageContent service={currentService} />;
+        case 'umbrella':
+            return <UmbrellaInsurancePageContent service={currentService} />;
         default:
             return <DefaultServicePageContent service={currentService} />;
     }
