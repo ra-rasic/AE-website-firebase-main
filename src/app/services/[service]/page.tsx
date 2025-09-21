@@ -290,26 +290,21 @@ const serviceData: { [key: string]: any } = {
         description: 'Essential cyber liability insurance for Florida businesses.',
         icon: <Laptop className="w-12 h-12 text-accent" />,
         requirements: [
-            'Data breach response coverage',
-            'Cyber extortion and ransomware protection',
-            'Business interruption from cyber events',
-            'Regulatory defense coverage'
+            { title: "Data Breach Response", description: "Covers costs of notifying affected customers, credit monitoring, and legal compliance after a data breach" },
+            { title: "Cyber Extortion Coverage", description: "Protects against ransomware attacks and cyber criminals demanding payment to restore your systems" }
         ],
         benefits: [
-            'Covers both first-party and third-party damages',
-            'Pays for forensic investigation costs',
-            'Covers customer notification and credit monitoring',
-            'Protection against regulatory fines and penalties',
-            'Ransomware payment negotiation and support',
-            'Reputation management and PR support'
+            { title: "Business Interruption", description: "Covers lost income when cyber attacks shut down your business operations and systems" },
+            { title: "Privacy Liability", description: "Protects against lawsuits from customers whose personal information was compromised" },
+            { title: "System Damage & Restoration", description: "Covers costs to repair or replace damaged computer systems and restore lost data" }
         ],
         localInfo: 'Florida businesses are major targets for cyber attacks. State and federal regulations require notification of data breaches, making the response costs significant. Cyber insurance is essential.',
         factors: [
-            'Size of business and annual revenue',
-            'Type and sensitivity of data you handle',
-            'Your current IT security measures',
-            'Industry and regulatory requirements (e.g., HIPAA)',
-            'Desired coverage limits and sub-limits'
+          'Size of business and annual revenue',
+          'Type and sensitivity of data you handle',
+          'Your current IT security measures',
+          'Industry and regulatory requirements (e.g., HIPAA)',
+          'Desired coverage limits and sub-limits'
         ],
         breadcrumb: "Cyber Liability"
     },
@@ -319,14 +314,13 @@ const serviceData: { [key: string]: any } = {
         description: 'Protect your business vehicles and drivers with comprehensive commercial auto insurance. Coverage for fleets, delivery vehicles, and company cars in Florida.',
         icon: <Truck className="w-12 h-12 text-accent" />,
         requirements: [
-            'Commercial liability for bodily injury and property damage',
-            'Personal Injury Protection (PIP) - $10,000 minimum',
+            { title: 'Commercial Liability', description: 'Required coverage for bodily injury and property damage your business vehicles cause to others' },
+            { title: 'Personal Injury Protection (PIP)', description: 'Required $10,000 minimum coverage for medical expenses and lost wages in Florida' },
         ],
         benefits: [
-            'Collision coverage for your vehicles',
-            'Comprehensive coverage for non-accident damage',
-            'Uninsured/Underinsured Motorist protection',
-            'Hired and non-owned auto coverage for employee vehicle use',
+            { title: 'Collision Coverage', description: "Covers damage to your business vehicles from accidents, regardless of who's at fault" },
+            { title: 'Comprehensive Coverage', description: 'Protects against theft, vandalism, weather damage, and other non-collision losses' },
+            { title: 'Uninsured Motorist', description: 'Protects your business when hit by drivers without adequate insurance coverage' },
         ],
         localInfo: 'Using personal auto insurance for business can void your coverage. Commercial auto is required for vehicles used in business operations and offers higher liability limits to protect your business assets.',
         factors: [
@@ -785,10 +779,13 @@ const BusinessInsurancePageContent = ({ service }: { service: any }) => (
                         <div>
                             <h2 className="text-2xl font-bold text-foreground mb-6">Key Coverages</h2>
                             <ul className="space-y-3">
-                                {service.requirements.map((req: string, index: number) => (
-                                <li key={index} className="flex items-start">
-                                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                                    <span className="text-muted-foreground">{req}</span>
+                                {service.requirements.map((req: any, index: number) => (
+                                <li key={index} className="flex flex-col items-start">
+                                    <span className="font-semibold text-card-foreground flex items-center mb-1">
+                                        <CheckCircle className="w-5 h-5 text-green-600 mr-3 flex-shrink-0" />
+                                        {typeof req === 'string' ? req : req.title}
+                                    </span>
+                                    {typeof req !== 'string' && <p className="text-muted-foreground text-sm ml-8">{req.description}</p>}
                                 </li>
                                 ))}
                             </ul>
@@ -798,10 +795,13 @@ const BusinessInsurancePageContent = ({ service }: { service: any }) => (
                         <div>
                             <h2 className="text-2xl font-bold text-foreground mb-6">Benefits</h2>
                              <ul className="space-y-3">
-                                {service.benefits.map((benefit: string, index: number) => (
-                                <li key={index} className="flex items-start">
-                                    <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                                    <span className="text-muted-foreground">{benefit}</span>
+                                {service.benefits.map((benefit: any, index: number) => (
+                                <li key={index} className="flex flex-col items-start">
+                                    <span className="font-semibold text-card-foreground flex items-center mb-1">
+                                        <CheckCircle className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                                        {typeof benefit === 'string' ? benefit : benefit.title}
+                                    </span>
+                                    {typeof benefit !== 'string' && <p className="text-muted-foreground text-sm ml-8">{benefit.description}</p>}
                                 </li>
                                 ))}
                             </ul>
@@ -923,7 +923,7 @@ export default function ServicePage({ params }: { params: { service: string } })
                     Speak with a licensed Florida insurance agent now.
                   </p>
                   <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 w-full">
-                    <a href="tel:239-591-1225">Call (239) 591-1225</a>
+                    <a href="tel:23 ასევე9-591-1225">Call (239) 591-1225</a>
                   </Button>
                 </div>
               </Card>
@@ -965,5 +965,6 @@ export default function ServicePage({ params }: { params: { service: string } })
     </>
   );
 }
+
 
 
