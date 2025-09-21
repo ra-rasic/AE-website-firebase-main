@@ -110,12 +110,12 @@ const autoIdSchema = z.object({
   policyholderName: z.string().min(1, "Policyholder name is required"),
   businessName: z.string().optional(),
   email: z.string().email("Invalid email address"),
-  streetAddress: z.string().min(1, "Street address is required"),
-  addressLine2: z.string().optional(),
-  city: z.string().min(1, "City is required"),
-  state: z.string().min(1, "State is required"),
-  zipCode: z.string().min(5, "A valid ZIP code is required"),
   deliveryMethod: z.enum(["email", "mail"]),
+  streetAddress: z.string().optional(),
+  addressLine2: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  zipCode: z.string().optional(),
 }).refine(data => {
     if (data.policyType === 'commercial') {
         return !!data.businessName && data.businessName.length > 0;
@@ -124,6 +124,17 @@ const autoIdSchema = z.object({
 }, {
     message: "Name of business is required for commercial policies.",
     path: ["businessName"],
+}).refine(data => {
+    if (data.deliveryMethod === 'mail') {
+        return !!data.streetAddress && data.streetAddress.length > 0 &&
+               !!data.city && data.city.length > 0 &&
+               !!data.state && data.state.length > 0 &&
+               !!data.zipCode && data.zipCode.length > 0;
+    }
+    return true;
+}, {
+    message: "A complete address is required for mail delivery.",
+    path: ["streetAddress"],
 });
 
 export async function requestAutoId(data: unknown) {
@@ -142,12 +153,14 @@ export async function requestAutoId(data: unknown) {
     <p><strong>Policy Number:</strong> ${policyNumber}</p>
     <p><strong>${policyType === 'commercial' ? 'Contact Name' : 'Policyholder Name'}:</strong> ${policyholderName}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Address:</strong><br/>
-      ${streetAddress}<br/>
-      ${addressLine2 || ''}<br/>
-      ${city}, ${state} ${zipCode}
-    </p>
     <p><strong>Delivery Method:</strong> ${deliveryMethod}</p>
+    ${deliveryMethod === 'mail' ? `
+      <p><strong>Mailing Address:</strong><br/>
+        ${streetAddress}<br/>
+        ${addressLine2 || ''}<br/>
+        ${city}, ${state} ${zipCode}
+      </p>
+    ` : ''}
   `;
 
   try {
