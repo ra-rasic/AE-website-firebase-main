@@ -232,10 +232,8 @@ const serviceData: { [key: string]: any } = {
         description: 'Protect your Florida business against third-party claims of bodily injury, property damage, and personal injury.',
         icon: <Shield className="w-12 h-12 text-accent" />,
         requirements: [
-            'Bodily injury liability coverage',
-            'Property damage liability protection',
-            'Personal and advertising injury coverage',
-            'Medical expense coverage'
+            { title: 'Bodily Injury Coverage', description: 'Protects your business if someone is injured on your premises or by your business operations' },
+            { title: 'Property Damage Coverage', description: 'Covers damage your business causes to someone else\'s property during normal operations' },
         ],
         benefits: [
             'Protection from third-party injury claims',
@@ -261,10 +259,8 @@ const serviceData: { [key: string]: any } = {
         description: 'Mandatory workers\' compensation insurance for Florida businesses, covering employee injuries and protecting you from lawsuits.',
         icon: <Users className="w-12 h-12 text-accent" />,
         requirements: [
-            'Medical benefits for work-related injuries',
-            'Wage replacement (disability) benefits',
-            'Death benefits for dependents',
-            'Employer\'s liability protection'
+            { title: 'Medical Benefits for Work-Related Injuries', description: 'Covers all medical expenses for employees injured on the job, including emergency care and rehabilitation' },
+            { title: 'Wage Replacement (Disability) Benefits', description: 'Provides partial wage replacement for employees unable to work due to work-related injuries' },
         ],
         benefits: [
             'Fulfills legal requirements and avoids state penalties',
@@ -923,7 +919,7 @@ export default function ServicePage({ params }: { params: { service: string } })
                     Speak with a licensed Florida insurance agent now.
                   </p>
                   <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 w-full">
-                    <a href="tel:23 ასევე9-591-1225">Call (239) 591-1225</a>
+                    <a href="tel:239-591-1225">Call (239) 591-1225</a>
                   </Button>
                 </div>
               </Card>
@@ -965,6 +961,7 @@ export default function ServicePage({ params }: { params: { service: string } })
     </>
   );
 }
+
 
 
 
