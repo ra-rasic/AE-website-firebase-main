@@ -258,13 +258,13 @@ const serviceData: { [key: string]: any } = {
     'workers-comp': {
         title: 'Workers Compensation',
         subtitle: 'Required Coverage for Florida Employers',
-        description: 'Mandatory workers\' compensation insurance for Florida businesses.',
+        description: 'Mandatory workers\' compensation insurance for Florida businesses, covering employee injuries and protecting you from lawsuits.',
         icon: <Users className="w-12 h-12 text-accent" />,
         requirements: [
-            'Coverage for all eligible employees per state law',
             'Medical benefits for work-related injuries',
             'Wage replacement (disability) benefits',
-            'Proof of coverage for state compliance'
+            'Death benefits for dependents',
+            'Employer\'s liability protection'
         ],
         benefits: [
             'Fulfills legal requirements and avoids state penalties',
@@ -274,7 +274,7 @@ const serviceData: { [key: string]: any } = {
             'Access to return-to-work programs',
             'Potential for dividends based on safety performance'
         ],
-        localInfo: 'Florida requires workers\' comp for most businesses with 4+ employees (and construction businesses with 1+ employee). Penalties for non-compliance are severe and can include stop-work orders.',
+        localInfo: 'Florida requires workers\' comp for most businesses with 4+ employees (and construction businesses with 1+ employee). Penalties for non-compliance are severe and can include stop-work orders and hefty fines.',
         factors: [
             'Industry classification codes (class codes)',
             'Total employee payroll',
