@@ -1,39 +1,45 @@
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor, BadgePercent, FileWarning } from 'lucide-react';
+import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor, BadgePercent, FileWarning, Wind, Droplets, Gem } from 'lucide-react';
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 const serviceData: { [key: string]: any } = {
     'homeowners': {
-      title: 'Homeowners Insurance Florida',
-      subtitle: 'Florida Home Insurance Protection',
-      description: 'Comprehensive homeowners insurance designed for Florida homes, including hurricane and wind protection.',
-      icon: <Home className="w-12 h-12 text-accent" />,
-      requirements: [
-        'Dwelling coverage for structure replacement',
-        'Personal property protection for your belongings',
-        'Liability coverage for accidents on your property',
-        'Additional living expenses (ALE) coverage'
-      ],
-      benefits: [
-        'Hurricane and windstorm protection',
-        'Roof coverage options for Florida weather',
-        'Personal property replacement cost',
-        'Liability protection up to $1M+',
-        'Additional living expenses if displaced',
-        'Water damage and mold coverage options'
-      ],
-      localInfo: 'Florida homeowners face unique risks from hurricanes, sinkholes, and flooding. Many insurers have specific requirements for roof age and hurricane mitigation features.',
-      factors: [
-        'Home age, construction type, and roof condition',
-        'Distance from the coast and flood zone',
-        'Hurricane mitigation features (wind-rated windows, etc.)',
-        'Your personal claims history and credit score',
-        'Selected coverage limits and deductible choices'
-      ],
-      breadcrumb: "Homeowners Insurance"
+        title: 'Homeowners Insurance Florida',
+        subtitle: 'Florida Home Insurance Protection',
+        description: 'Comprehensive homeowners insurance designed for Florida homes, including hurricane and wind protection.',
+        icon: <Home className="w-12 h-12 text-accent" />,
+        coreCoverages: [
+          { title: "Dwelling (Coverage A)", description: "Covers the cost to repair or rebuild the physical structure of your home if it's damaged by a covered peril." },
+          { title: "Other Structures (Coverage B)", description: "Protects structures on your property that aren't attached to your house, like a detached garage, shed, or fence." },
+          { title: "Personal Property (Coverage C)", description: "Covers your personal belongings, such as furniture, clothing, and electronics, if they are stolen or damaged." },
+          { title: "Loss of Use (Coverage D)", description: "Also known as Additional Living Expenses (ALE), this pays for temporary housing and living costs if your home is uninhabitable during repairs." },
+          { title: "Personal Liability (Coverage E)", description: "Protects you financially if you're responsible for injuring someone or damaging their property, both on and off your property." },
+          { title: "Medical Payments (Coverage F)", description: "Covers minor medical bills for guests who are injured on your property, regardless of who is at fault." }
+        ],
+        floridaCoverages: [
+            { title: "Hurricane & Windstorm Coverage", description: "Essential protection for damage caused by named hurricanes and other wind events. This typically comes with a separate, percentage-based hurricane deductible that you must be aware of." },
+            { title: "Flood Insurance", description: "CRITICAL: Standard home policies DO NOT cover flood damage from storm surge or rising water. A separate policy from the NFIP or a private carrier is a must-have in Florida." },
+        ],
+        optionalAddOns: [
+            { title: "Water Backup Coverage", description: "Covers damage from a backed-up sewer or drain, which is not typically included in a standard policy." },
+            { title: "Scheduled Personal Property", description: "Provides higher, specific coverage limits for high-value items like jewelry, art, or firearms that exceed standard policy limits." },
+            { title: "Ordinance or Law Coverage", description: "Helps pay the extra cost to rebuild your home to current, stricter building codes after a major loss." },
+        ],
+        discounts: [
+          "Wind Mitigation Credits", "Secured Community/Gated", "Newer Home", "Multi-Policy (Bundle)",
+          "Security & Fire Alarms", "Claims-Free History", "New Roof", "Retired/55+ Age"
+        ],
+        factors: [
+          'Home age, construction type, and roof condition',
+          'Distance from the coast and flood zone',
+          'Hurricane mitigation features (wind-rated windows, etc.)',
+          'Your personal claims history and credit score',
+          'Selected coverage limits and deductible choices'
+        ],
+        breadcrumb: "Homeowners Insurance"
     },
     'auto': {
         title: 'Auto Insurance Florida',
@@ -424,6 +430,69 @@ const AutoInsurancePageContent = ({ service }: { service: any }) => (
     </>
   );
 
+const HomeownersInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+        <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <Shield className="w-6 h-6 text-primary mr-3" />
+            Core Homeowners Coverages Explained
+        </h2>
+        <div className="space-y-4">
+            {service.coreCoverages.map((item: {title: string, description: string}, index: number) => (
+            <div key={index}>
+                <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+            ))}
+        </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Crucial Coverages for Florida Homes</h2>
+        <div className="space-y-4">
+            {service.floridaCoverages.map((item: {title: string, description: string}, index: number) => (
+            <div key={index}>
+                <h3 className="font-semibold text-card-foreground flex items-center">
+                    {item.title.includes('Hurricane') ? <Wind className="w-4 h-4 mr-2" /> : <Droplets className="w-4 h-4 mr-2" />}
+                    {item.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+            ))}
+        </div>
+        </Card>
+        
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Smart Optional Add-Ons</h2>
+            <div className="space-y-4">
+                {service.optionalAddOns.map((item: {title: string, description: string}, index: number) => (
+                <div key={index}>
+                    <h3 className="font-semibold text-card-foreground flex items-center"><Gem className="w-4 h-4 mr-2" />{item.title}</h3>
+                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                </div>
+                ))}
+            </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg bg-secondary">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <BadgePercent className="w-6 h-6 text-primary mr-3" />
+            How to Save on Your Homeowners Insurance
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+            {service.discounts.map((discount: string, index: number) => (
+                <div key={index} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">{discount}</span>
+                </div>
+            ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-4">Discount availability varies by carrier and eligibility.</p>
+        </Card>
+    </>
+);
+
+
 const DefaultServicePageContent = ({ service }: { service: any }) => (
     <>
         <Card className="p-8 mb-8 shadow-lg">
@@ -477,7 +546,16 @@ export default function ServicePage({ params }: { params: { service: string } })
   const isPersonal = ['homeowners', 'auto', 'flood', 'umbrella', 'boat', 'condo-insurance'].includes(params.service);
   const parentPage = isPersonal ? {label: 'Personal Insurance', href: '/personal-insurance'} : {label: 'Business Insurance', href: '/business-insurance'};
 
-  const PageContent = params.service === 'auto' ? AutoInsurancePageContent : DefaultServicePageContent;
+  const PageContent = () => {
+    switch(params.service) {
+        case 'auto':
+            return <AutoInsurancePageContent service={currentService} />;
+        case 'homeowners':
+            return <HomeownersInsurancePageContent service={currentService} />;
+        default:
+            return <DefaultServicePageContent service={currentService} />;
+    }
+  }
 
   return (
     <>
@@ -504,7 +582,7 @@ export default function ServicePage({ params }: { params: { service: string } })
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <PageContent service={currentService} />
+              <PageContent />
               <Card className="p-8 shadow-lg">
                 <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
                   <Calculator className="w-6 h-6 text-primary mr-3" />
