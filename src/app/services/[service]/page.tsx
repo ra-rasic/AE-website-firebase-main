@@ -139,23 +139,24 @@ const serviceData: { [key: string]: any } = {
     'boat': {
         title: 'Boat & PWC Insurance',
         subtitle: 'Marine Insurance for Florida Waters',
-        description: 'Comprehensive boat and personal watercraft insurance for Florida boaters.',
+        description: 'Comprehensive marine insurance for Florida boaters, covering your vessel, passengers, and liability on the water.',
         icon: <Sailboat className="w-12 h-12 text-accent" />,
-        requirements: [
-          'Hull coverage for physical damage to your vessel',
-          'Liability coverage for accidents and injuries',
-          'Medical payments coverage for passengers',
-          'Uninsured boater protection'
+        essentialCoverages: [
+          { title: "Physical Damage Coverage", description: "Protects your boat's hull, motor, and equipment from collision, theft, vandalism, and weather damage." },
+          { title: "Liability Protection", description: "Covers bodily injury and property damage you cause to others while operating your boat or PWC." },
         ],
-        benefits: [
-          'Agreed value or actual cash value options',
-          'On-water towing and assistance services',
-          'Personal effects and fishing equipment coverage',
-          'Fuel spill liability protection',
-          'Hurricane haul-out reimbursement coverage',
-          'Discounts for safety courses and equipment'
+        smartCoverages: [
+          { title: "Medical Payments", description: "Covers medical expenses for you and your passengers injured in a boating accident, regardless of fault." },
+          { title: "Uninsured Boater Coverage", description: "Protects you and your passengers if you're hit by a boater with little or no insurance." },
+          { title: "Personal Effects Coverage", description: "Covers fishing equipment, electronics, and personal belongings on your boat that aren't part of the boat itself." },
         ],
-        localInfo: 'Florida waters present unique risks including hurricanes, submerged objects, and heavy boat traffic. Proper marine insurance is essential for all watercraft owners to navigate safely.',
+        floridaRisks: [
+            { title: "Hurricane Season", items: ["Named storm deductibles", "Haul-out coverage reimbursement", "Emergency towing", "Wreck removal"] },
+            { title: "Saltwater Risks", items: ["Corrosion protection", "Fuel spill liability", "Fishing equipment coverage", "Electronics protection"] },
+        ],
+        discounts: [
+          "Boating Safety Course", "Multi-Policy (Bundle)", "Boat Club Membership", "Experienced Boater", "Safety Equipment", "Lay-Up Period (Off-Season)"
+        ],
         factors: [
           'Boat type (e.g., center console, cruiser), age, and value',
           'Engine horsepower and maximum speed',
@@ -611,6 +612,73 @@ const UmbrellaInsurancePageContent = ({ service }: { service: any }) => (
     </>
 );
 
+const BoatInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <Shield className="w-6 h-6 text-primary mr-3" />
+                Essential Boat Coverages
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+                {service.essentialCoverages.map((item: { title: string; description: string }, index: number) => (
+                    <div key={index}>
+                        <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Additional Smart Coverages</h2>
+            <div className="space-y-4">
+                {service.smartCoverages.map((item: { title: string; description: string }, index: number) => (
+                    <div key={index}>
+                        <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Florida Marine Insurance Considerations</h2>
+            <p className="text-muted-foreground mb-4 text-sm">
+                Florida's unique marine environment requires specialized coverage for hurricanes, saltwater exposure, and year-round boating conditions.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8">
+                {service.floridaRisks.map((risk: { title: string; items: string[] }, index: number) => (
+                    <div key={index} className="bg-secondary/50 p-4 rounded-lg">
+                        <h3 className="font-semibold text-card-foreground mb-2">{risk.title}</h3>
+                        <ul className="space-y-1 text-sm text-muted-foreground list-disc pl-5">
+                            {risk.items.map((item, itemIndex) => (
+                                <li key={itemIndex}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg bg-secondary">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <BadgePercent className="w-6 h-6 text-primary mr-3" />
+                Available Boat Insurance Discounts
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+                {service.discounts.map((discount: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{discount}</span>
+                    </div>
+                ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-4">Discount availability varies by carrier and eligibility.</p>
+        </Card>
+    </>
+);
+
+
 const DefaultServicePageContent = ({ service }: { service: any }) => (
     <>
         <Card className="p-8 mb-8 shadow-lg">
@@ -674,6 +742,8 @@ export default function ServicePage({ params }: { params: { service: string } })
             return <FloodInsurancePageContent service={currentService} />;
         case 'umbrella':
             return <UmbrellaInsurancePageContent service={currentService} />;
+        case 'boat':
+            return <BoatInsurancePageContent service={currentService} />;
         default:
             return <DefaultServicePageContent service={currentService} />;
     }
