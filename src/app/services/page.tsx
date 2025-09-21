@@ -107,7 +107,7 @@ export default function ServicesPage() {
               Florida's unique risks and requirements. Get expert guidance from your local Bonita Springs insurance
               professionals.
             </p>
-            <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8">
+            <Button size="lg" asChild variant="secondary" className="bg-white text-primary hover:bg-white/90 text-lg px-8">
               <Link href="/contact">Get Your Free Quote</Link>
             </Button>
           </div>
