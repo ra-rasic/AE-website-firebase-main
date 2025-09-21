@@ -239,7 +239,7 @@ export default function RequestAutoIdPage() {
                             name="streetAddress"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>Street Address *</FormLabel>
+                                <FormLabel>Mailing Address *</FormLabel>
                                 <FormControl>
                                     <Input placeholder="e.g., 123 Main St" {...field} />
                                 </FormControl>
