@@ -1,7 +1,7 @@
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor } from 'lucide-react';
+import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor, BadgePercent, FileWarning } from 'lucide-react';
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -36,34 +36,40 @@ const serviceData: { [key: string]: any } = {
       breadcrumb: "Homeowners Insurance"
     },
     'auto': {
-      title: 'Auto Insurance Florida',
-      subtitle: 'Comprehensive Florida Auto Insurance Coverage',
-      description: 'Protect yourself on Florida roads with comprehensive auto insurance that meets state requirements and provides peace of mind.',
-      icon: <Car className="w-12 h-12 text-accent" />,
-      requirements: [
-        'Personal Injury Protection (PIP) - $10,000 minimum',
-        'Property Damage Liability (PDL) - $10,000 minimum',
-        'Bodily Injury Liability (BIL) is highly recommended',
-        'Uninsured/Underinsured Motorist (UM) Coverage'
-      ],
-      benefits: [
-        'Florida state-required PIP/PDL coverage',
-        'Protection against uninsured/underinsured drivers',
-        'Comprehensive & collision damage coverage',
-        'Claims support during business hours',
-        'Multi-policy and safe driver discounts',
-        'Flexible payment plans to fit your budget'
-      ],
-      localInfo: 'Florida is a no-fault state, requiring all drivers to carry PIP and property damage liability. With a high number of uninsured drivers on the road, UM coverage is crucial for your protection.',
-      factors: [
-        'Driving record, accidents, and violations',
-        'Vehicle make, model, age, and safety features', 
-        'Your chosen coverage limits and deductibles',
-        'Garage location and annual mileage',
-        'Credit history and insurance score'
-      ],
-      breadcrumb: "Auto Insurance"
-    },
+        title: 'Auto Insurance Florida',
+        subtitle: 'Comprehensive Florida Auto Insurance Coverage',
+        description: 'Protect yourself on Florida roads with comprehensive auto insurance that meets state requirements and provides peace of mind.',
+        icon: <Car className="w-12 h-12 text-accent" />,
+        requiredCoverages: [
+          { title: "Personal Injury Protection (PIP)", description: "Covers 80% of your medical bills and 60% of lost wages up to $10,000, regardless of who is at fault. This is the foundation of Florida's no-fault law." },
+          { title: "Property Damage Liability (PDL)", description: "Pays for damage you cause to another person's vehicle or property. A minimum of $10,000 is required." },
+        ],
+        optionalCoverages: [
+          { title: "Bodily Injury Liability (BIL)", description: "Covers injuries you cause to others in an accident. While not always required, it's essential for protecting your assets from lawsuits." },
+          { title: "Uninsured/Underinsured Motorist (UM)", description: "Covers your injuries and expenses if you're hit by a driver with little or no insurance. Crucial in a state with many uninsured drivers." },
+          { title: "Collision Coverage", description: "Pays to repair or replace your vehicle after an accident with another object or vehicle, regardless of fault." },
+          { title: "Comprehensive Coverage", description: "Covers damage to your vehicle from non-collision events like theft, vandalism, storms, or hitting an animal." },
+          { title: "Medical Payments (MedPay)", description: "Helps pay for medical expenses for you and your passengers after an accident, regardless of fault. It can cover costs PIP doesn't." },
+          { title: "Rental Reimbursement", description: "Covers the cost of a rental car while your vehicle is being repaired after a covered claim." }
+        ],
+        specialFilings: [
+            { title: "SR-22 Filing", description: "A certificate of financial responsibility required by the state after certain driving-related violations, such as a DUI conviction or driving without insurance. It proves you have the required liability coverage." },
+            { title: "FR-44 Filing", description: "Similar to an SR-22 but requires much higher liability coverage limits. It is typically required for drivers convicted of more serious offenses, such as a DUI with bodily injury." },
+        ],
+        discounts: [
+          "Multi-Policy (Bundle Home/Auto)", "Safe Driver (Clean Record)", "Good Student",
+          "Multi-Car", "Paid-in-Full", "Homeowner", "Defensive Driving Course",
+          "Vehicle Safety Features (Airbags, Anti-Lock Brakes)"
+        ],
+        factors: [
+          'Driving record, accidents, and violations',
+          'Vehicle make, model, age, and safety features', 
+          'Your chosen coverage limits and deductibles',
+          'Garage location and annual mileage',
+          'Credit history and insurance score'
+        ],
+        breadcrumb: "Auto Insurance"
+      },
     'flood': {
       title: 'Flood Insurance Florida',
       subtitle: 'Essential Flood Protection for Florida Properties',
@@ -356,6 +362,104 @@ const serviceData: { [key: string]: any } = {
       }
 };
 
+const AutoInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+          <Shield className="w-6 h-6 text-primary mr-3" />
+          Florida's Required Auto Insurance Coverages
+        </h2>
+        <div className="space-y-4">
+          {service.requiredCoverages.map((item: {title: string, description: string}, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Smart, Optional Coverages for Full Protection</h2>
+        <div className="space-y-4">
+          {service.optionalCoverages.map((item: {title: string, description: string}, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <FileWarning className="w-6 h-6 text-primary mr-3" />
+            FR-44 and SR-22 in Florida
+        </h2>
+        <div className="space-y-4">
+            {service.specialFilings.map((item: {title: string, description: string}, index: number) => (
+            <div key={index}>
+                <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+            ))}
+        </div>
+      </Card>
+
+      <Card className="p-8 mb-8 shadow-lg bg-secondary">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <BadgePercent className="w-6 h-6 text-primary mr-3" />
+            Available Auto Insurance Discounts
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+            {service.discounts.map((discount: string, index: number) => (
+                <div key={index} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">{discount}</span>
+                </div>
+            ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-4">Discount availability varies by carrier and eligibility.</p>
+      </Card>
+    </>
+  );
+
+const DefaultServicePageContent = ({ service }: { service: any }) => (
+    <>
+        <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <Shield className="w-6 h-6 text-primary mr-3" />
+            Coverage Requirements
+        </h2>
+        <ul className="space-y-3">
+            {service.requirements.map((req: string, index: number) => (
+            <li key={index} className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground">{req}</span>
+            </li>
+            ))}
+        </ul>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Why Choose Our Coverage?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+            {service.benefits.map((benefit: string, index: number) => (
+            <div key={index} className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground">{benefit}</span>
+            </div>
+            ))}
+        </div>
+        </Card>
+
+        <Card className="p-8 mb-8 shadow-lg bg-secondary">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Florida-Specific Considerations</h2>
+        <p className="text-muted-foreground leading-relaxed">{service.localInfo}</p>
+        </Card>
+    </>
+)
+
 
 export default function ServicePage({ params }: { params: { service: string } }) {
   const currentService = serviceData[params.service] || {
@@ -372,6 +476,8 @@ export default function ServicePage({ params }: { params: { service: string } })
 
   const isPersonal = ['homeowners', 'auto', 'flood', 'umbrella', 'boat', 'condo-insurance'].includes(params.service);
   const parentPage = isPersonal ? {label: 'Personal Insurance', href: '/personal-insurance'} : {label: 'Business Insurance', href: '/business-insurance'};
+
+  const PageContent = params.service === 'auto' ? AutoInsurancePageContent : DefaultServicePageContent;
 
   return (
     <>
@@ -398,38 +504,7 @@ export default function ServicePage({ params }: { params: { service: string } })
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <Card className="p-8 mb-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-                  <Shield className="w-6 h-6 text-primary mr-3" />
-                  Coverage Requirements
-                </h2>
-                <ul className="space-y-3">
-                  {currentService.requirements.map((req: string, index: number) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{req}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              <Card className="p-8 mb-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-foreground mb-6">Why Choose Our Coverage?</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                  {currentService.benefits.map((benefit: string, index: number) => (
-                    <div key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="p-8 mb-8 shadow-lg bg-secondary">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Florida-Specific Considerations</h2>
-                <p className="text-muted-foreground leading-relaxed">{currentService.localInfo}</p>
-              </Card>
-
+              <PageContent service={currentService} />
               <Card className="p-8 shadow-lg">
                 <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
                   <Calculator className="w-6 h-6 text-primary mr-3" />
