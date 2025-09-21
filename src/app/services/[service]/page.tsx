@@ -169,29 +169,34 @@ const serviceData: { [key: string]: any } = {
     'condo-insurance': {
         title: 'Condo Insurance (HO-6)',
         subtitle: 'Specialized Coverage for Florida Condos',
-        description: 'Protect your Florida condo unit with an HO-6 policy.',
+        description: 'Protect your Florida condo unit with an HO-6 policy designed to fill the gaps left by your association\'s master policy.',
         icon: <Shield className="w-12 h-12 text-accent" />,
-        requirements: [
-          'Coverage for interior walls, fixtures, and appliances',
-          'Personal property and contents protection',
-          'Personal liability coverage for accidents',
-          'Loss assessment coverage for shared damages'
+        essentialCoverages: [
+            { title: "Dwelling & Interior Structure", description: "Covers interior walls, flooring, fixtures, and any improvements or betterments you've made to your unit." },
+            { title: "Personal Property", description: "Protects your belongings like furniture, clothing, and electronics from theft, fire, and other perils." }
         ],
-        benefits: [
-          'Protection for interior finishes and upgrades',
-          'Covers theft, fire, water leaks (from your unit)',
-          'Liability protection if someone is injured in your unit',
-          'Loss assessment helps pay for your share of common area repairs',
-          'Additional living expenses if your unit is uninhabitable',
-          'Meets most condo association insurance requirements'
+        smartCoverages: [
+            { title: "Personal Liability", description: "Protects you against lawsuits if someone is injured in your unit or you accidentally damage another unit." },
+            { title: "Loss Assessment", description: "CRITICAL: Covers your share of a special assessment from the HOA for damage to common areas that exceeds the master policy's limits." },
+            { title: "Additional Living Expenses", description: "Pays for temporary housing and living costs if your condo is uninhabitable due to a covered loss." }
         ],
-        localInfo: 'Florida condo associations have a master policy for the building exterior and common areas, but you are responsible for the "walls-in." An HO-6 policy is crucial to cover your personal space and assets.',
+        masterPolicy: {
+            covers: [
+                "Building exterior and foundation", "Common areas (lobbies, pools, gyms)", "Roof and shared plumbing/electrical", "Elevators and hallways"
+            ],
+            ho6Covers: [
+                "Your personal belongings", "Interior walls, flooring, cabinets", "Upgrades and renovations", "Your personal liability"
+            ]
+        },
+        discounts: [
+            "Multi-Policy (Bundle)", "Security & Fire Alarms", "Gated Community", "Hurricane Shutters", "Claims-Free History", "Newer Condo"
+        ],
         factors: [
-          'Value of your personal property and upgrades',
-          'Condo association\'s master policy details',
-          'Your personal claims history',
-          'Desired liability and loss assessment limits',
-          'Deductible amounts for different perils'
+            'Value of your personal property and interior upgrades',
+            'Your condo association\'s master policy details',
+            'Desired liability and loss assessment coverage limits',
+            'Your personal claims history and location',
+            'Chosen deductible amounts for different perils'
         ],
         breadcrumb: "Condo Insurance"
     },
@@ -678,6 +683,73 @@ const BoatInsurancePageContent = ({ service }: { service: any }) => (
     </>
 );
 
+const CondoInsurancePageContent = ({ service }: { service: any }) => (
+    <>
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+          <Shield className="w-6 h-6 text-primary mr-3" />
+          Essential HO-6 Coverages
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {service.essentialCoverages.map((item: { title: string; description: string }, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+  
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Additional Smart Coverages</h2>
+        <div className="space-y-4">
+          {service.smartCoverages.map((item: { title: string; description: string }, index: number) => (
+            <div key={index}>
+              <h3 className="font-semibold text-card-foreground">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+  
+      <Card className="p-8 mb-8 shadow-lg">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Understanding Your Association's Master Policy</h2>
+        <p className="text-muted-foreground mb-4 text-sm">
+          Your HOA's policy covers the building and common areas, but your HO-6 policy is crucial for protecting everything inside your unit.
+        </p>
+        <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-secondary/50 p-4 rounded-lg">
+                <h3 className="font-semibold text-card-foreground mb-2">Master Policy Covers</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground list-disc pl-5">
+                    {service.masterPolicy.covers.map((item: string, index: number) => <li key={index}>{item}</li>)}
+                </ul>
+            </div>
+            <div className="bg-secondary/50 p-4 rounded-lg">
+                <h3 className="font-semibold text-card-foreground mb-2">Your HO-6 Policy Covers</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground list-disc pl-5">
+                    {service.masterPolicy.ho6Covers.map((item: string, index: number) => <li key={index}>{item}</li>)}
+                </ul>
+            </div>
+        </div>
+      </Card>
+
+      <Card className="p-8 mb-8 shadow-lg bg-secondary">
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <BadgePercent className="w-6 h-6 text-primary mr-3" />
+            Available Condo Insurance Discounts
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+            {service.discounts.map((discount: string, index: number) => (
+                <div key={index} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">{discount}</span>
+                </div>
+            ))}
+        </div>
+        <p className="text-xs text-muted-foreground mt-4">Discount availability varies by carrier and eligibility.</p>
+      </Card>
+    </>
+  );
 
 const DefaultServicePageContent = ({ service }: { service: any }) => (
     <>
@@ -744,6 +816,8 @@ export default function ServicePage({ params }: { params: { service: string } })
             return <UmbrellaInsurancePageContent service={currentService} />;
         case 'boat':
             return <BoatInsurancePageContent service={currentService} />;
+        case 'condo-insurance':
+            return <CondoInsurancePageContent service={currentService} />;
         default:
             return <DefaultServicePageContent service={currentService} />;
     }
