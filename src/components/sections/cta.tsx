@@ -13,7 +13,7 @@ export function Cta() {
                     for their insurance needs. Get your free quote in minutes.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                    <Button size="lg" asChild variant="secondary" className="bg-white text-primary hover:bg-white/90">
                         <Link href="/contact">Get a Free Quote</Link>
                     </Button>
                     <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">

@@ -26,16 +26,16 @@ export function LocalBusinessSchema({
     email: "info@aeinsurancegroup.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "25251 Chamber of Commerce Dr",
+      streetAddress: "28441 S Tamiami Trail, Suite 109",
       addressLocality: "Bonita Springs",
       addressRegion: "FL",
-      postalCode: "34135",
+      postalCode: "34134",
       addressCountry: "US",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "26.3398",
-      longitude: "-81.7787",
+      latitude: "26.3539",
+      longitude: "-81.8015",
     },
     openingHours: ["Mo-Fr 08:30-17:00", "Sa 09:00-13:00"],
     areaServed: [
