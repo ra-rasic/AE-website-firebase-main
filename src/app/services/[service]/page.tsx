@@ -3,7 +3,7 @@
 import { QuoteForm } from "@/components/quote-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor, BadgePercent, FileWarning, Wind, Droplets, Gem } from 'lucide-react';
+import { Shield, CheckCircle, Phone, Calculator, Home, Car, Umbrella, Sailboat, Building, Users, Laptop, FileText, Anchor, BadgePercent, FileWarning, Wind, Droplets, Gem, Truck } from 'lucide-react';
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -313,34 +313,30 @@ const serviceData: { [key: string]: any } = {
         ],
         breadcrumb: "Cyber Liability"
     },
-     'commercial-property': {
-      title: 'Commercial Property Insurance',
-      subtitle: 'Protect Your Florida Business Property',
-      description: 'Comprehensive commercial property insurance for Florida businesses.',
-      icon: <Building className="w-12 h-12 text-accent" />,
-      requirements: [
-        'Building coverage for owned structures',
-        'Business personal property (BPP) coverage',
-        'Protection for equipment and machinery',
-        'Specific hurricane and wind coverage'
-      ],
-      benefits: [
-        'Hurricane and windstorm damage protection',
-        'Equipment breakdown coverage options',
-        'Business interruption to cover lost income',
-        'Extra expense coverage for temporary relocation',
-        'Ordinance and law coverage for rebuilds',
-        'Protects tenant improvements and betterments'
-      ],
-      localInfo: 'Florida commercial properties face severe hurricane risks, requiring specialized coverage. Policies have specific hurricane deductibles (often a percentage) and underwriting requirements.',
-      factors: [
-        'Building value and construction type (masonry vs. frame)',
-        'Location and hurricane risk zone',
-        'Value of business personal property (contents)',
-        'Occupancy type and fire protection systems',
-        'Desired coverage limits and deductibles'
-      ],
-      breadcrumb: "Commercial Property"
+    'commercial-auto': {
+        title: 'Commercial Auto Insurance',
+        subtitle: 'Fleet and vehicle coverage for Florida business transportation needs.',
+        description: 'Protect your business vehicles and drivers with comprehensive commercial auto insurance. Coverage for fleets, delivery vehicles, and company cars in Florida.',
+        icon: <Truck className="w-12 h-12 text-accent" />,
+        requirements: [
+            'Commercial liability for bodily injury and property damage',
+            'Personal Injury Protection (PIP) - $10,000 minimum',
+        ],
+        benefits: [
+            'Collision coverage for your vehicles',
+            'Comprehensive coverage for non-accident damage',
+            'Uninsured/Underinsured Motorist protection',
+            'Hired and non-owned auto coverage for employee vehicle use',
+        ],
+        localInfo: 'Using personal auto insurance for business can void your coverage. Commercial auto is required for vehicles used in business operations and offers higher liability limits to protect your business assets.',
+        factors: [
+            'Number and type of vehicles in your fleet',
+            'Driving records of your employees',
+            'Vehicle usage (e.g., delivery, transport)',
+            'Garage location and typical travel radius',
+            'Desired coverage limits and deductibles'
+        ],
+        breadcrumb: "Commercial Auto"
     },
     'errors-omissions': {
         title: 'Professional Liability (E&O)',
@@ -969,4 +965,5 @@ export default function ServicePage({ params }: { params: { service: string } })
     </>
   );
 }
+
 
